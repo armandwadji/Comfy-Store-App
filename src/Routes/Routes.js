@@ -9,7 +9,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { Animated, Dimensions, StyleSheet } from "react-native";
 import { useRef } from "react";
-import { windowWidth } from "../constants/theme";
+import { COLORS, windowWidth } from "../constants/theme";
 
 const BottomTabScreen = () => {
   const Tab = createBottomTabNavigator();
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 40,
     height: 2,
-    backgroundColor: "black",
+    backgroundColor: COLORS.black,
     bottom: 30,
     left: windowWidth / 3 / 2 - 20,
     zIndex: 100,
