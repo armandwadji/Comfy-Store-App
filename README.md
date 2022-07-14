@@ -10,6 +10,6 @@
 - [singleproduct](https://course-api.com/javascript-store-single-product?id=rec43w3ipXvP28vog)
 
 ## Description
-Application de vente des meubles et décorations d'intérieurs. Gestion du panier  de l'utilisateur par l'approche de la programmation fonctionnelle
+Application de vente de meubles et décorations d'intérieurs. Gestion du store et du panier de l'utilisateur.
 
 <h1 align="center">Bon Code 🖥 💻 📱</h1>
