@@ -28,7 +28,7 @@ const BottomTabScreen = () => {
             switch (route.name) {
               case "Home":
                 if (focused) {
-                  return <Entypo name='home' size={35} />;
+                  return <Entypo name='home' size={35} color={COLORS.orange} />;
                 } else {
                   return <SimpleLineIcons name='home' size={35} />;
                 }
@@ -37,14 +37,26 @@ const BottomTabScreen = () => {
                 if (!focused) {
                   return <SimpleLineIcons name='handbag' size={35} />;
                 } else {
-                  return <FontAwesome name='shopping-bag' size={35} />;
+                  return (
+                    <FontAwesome
+                      name='shopping-bag'
+                      size={35}
+                      color={COLORS.orange}
+                    />
+                  );
                 }
 
               case "Basket":
                 if (!focused) {
                   return <SimpleLineIcons name='basket' size={35} />;
                 } else {
-                  return <FontAwesome name='shopping-cart' size={35} />;
+                  return (
+                    <FontAwesome
+                      name='shopping-cart'
+                      size={35}
+                      color={COLORS.orange}
+                    />
+                  );
                 }
 
               default:
@@ -108,7 +120,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 40,
     height: 2,
-    backgroundColor: COLORS.black,
+    backgroundColor: COLORS.orange,
     bottom: 30,
     left: windowWidth / 3 / 2 - 20,
     zIndex: 100,

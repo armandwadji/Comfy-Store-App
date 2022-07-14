@@ -7,7 +7,7 @@ const COLORS = {
   white: "#FFFFFF",
   black: "#070B0D",
   teal: "#102A42",
-  backgound: "#F1F5F8",
+  background: "#F1F5F8",
 };
 
 export { windowWidth, windowHeight, COLORS };
