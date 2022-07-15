@@ -6,10 +6,6 @@ import Navigation from "./src/navigations/Navigations";
 export default function App() {
   return (
     <NavigationContainer>
-      {/* <View style={styles.container}>
-        <Text>Open up App.js to start working on your </Text>
-        <StatusBar style='auto' />
-      </View> */}
       <Navigation />
     </NavigationContainer>
   );

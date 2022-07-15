@@ -1,17 +1,51 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { Text, ScrollView, FlatList } from "react-native";
+import React, { useState } from "react";
+import { COLORS } from "../../constants/theme";
+import Search from "../../components/searchComponent/Search";
+import Header from "../../components/homeComponents/header/Header";
+import Product from "../../components/productComponent/Product";
+import UseProducts from "../../hooks/products/UseProducts";
+import styles from "./HomeScreenStyle";
 
 const HomeScreen = () => {
+  //Méthode pour afficher la barre de recherche au scroll positif de l'utilisateur
+  const [scroll, setScroll] = useState(null);
+  const handleScroll = (e) => {
+    setScroll(Math.round(e.nativeEvent.contentOffset.y));
+  };
+
+  //On va chercher la data grace à un hook personnalisé useproducts
+  const products = UseProducts();
+  const featured = products?.filter((product) => product.fields.featured);
+  // console.log(featured.length);
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "green",
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
-      <Text>HomeScreen</Text>
-    </View>
+    <>
+      {/* Searchinput */}
+      <Search scroll={scroll} />
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        snapToEnd={true}
+        onScroll={(e) => handleScroll(e)}
+        scrollEventThrottle={10000}>
+        {/* Header */}
+        <Header />
+
+        {/* Featured */}
+        <Text style={styles.textContainer}>
+          <Text style={styles.slashcolor}>/</Text> Featured
+        </Text>
+
+        {/* Articles */}
+        <FlatList
+          data={featured}
+          renderItem={(article) => <Product article={article} />}
+          keyExtractor={(article) => article.id}
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+        />
+      </ScrollView>
+    </>
   );
 };
 
