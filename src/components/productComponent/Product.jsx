@@ -4,6 +4,7 @@ import { COLORS, windowWidth } from "../../constants/theme";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import styles from "./productStyle";
 import { useNavigation } from "@react-navigation/native";
+import { formatPrice } from "../utils/Utils";
 
 const Product = ({ article }) => {
   const navigation = useNavigation();
@@ -37,7 +38,7 @@ const Product = ({ article }) => {
         </View>
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.price}>{price} $</Text>
+          <Text style={styles.price}>{formatPrice(price)}</Text>
         </View>
       </>
     </TouchableOpacity>

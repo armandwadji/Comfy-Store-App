@@ -8,6 +8,7 @@ const URLSingleProduct =
 
 const COLORS = {
   orange: "#BA5D2C",
+  red: "red",
   white: "#FFFFFF",
   black: "#070B0D",
   teal: "#102A42",

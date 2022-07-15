@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 25,
     textAlign: "center",
-    marginVertical: 10,
+    marginVertical: 5,
     color: COLORS.teal,
   },
   slashcolor: {
