@@ -40,7 +40,7 @@ const Product = ({ article }) => {
           }}
         />
         <TouchableOpacity style={{ position: "absolute", right: 15, top: 10 }}>
-          <AntDesign name='hearto' size={20} color={COLORS.white} />
+          <AntDesign name='hearto' size={25} color={COLORS.white} />
         </TouchableOpacity>
       </View>
       <View
