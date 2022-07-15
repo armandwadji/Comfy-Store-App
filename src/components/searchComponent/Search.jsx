@@ -1,11 +1,36 @@
-import { View, TextInput } from "react-native";
-import React from "react";
+import { View, TextInput, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
 import Feather from "react-native-vector-icons/Feather";
 import { COLORS, windowWidth } from "../../constants/theme";
 
-const Search = () => {
+const Search = ({ scroll }) => {
+  const [show, setShow] = useState(null);
+  const [value, setvalue] = useState(0);
+
+  useEffect(() => {
+    setShow(scroll);
+    const val = scroll;
+    const res = val - show;
+    // console.log("show :", show);
+    // console.log("val :", val);
+    // console.log("res :", res);
+    if (res > 0) {
+      setvalue(-100);
+    } else {
+      setvalue(0);
+    }
+  }, [scroll]);
+
   return (
-    <View style={{ position: "absolute", top: 60, zIndex: 100 }}>
+    <TouchableOpacity
+      style={[
+        {
+          position: "absolute",
+          top: 60,
+          zIndex: 100,
+          transform: [{ translateY: value }],
+        },
+      ]}>
       <TextInput
         placeholder='Recherche'
         placeholderTextColor={COLORS.background}
@@ -27,7 +52,7 @@ const Search = () => {
         color={COLORS.background}
         style={{ position: "absolute", top: 8, left: "8%" }}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

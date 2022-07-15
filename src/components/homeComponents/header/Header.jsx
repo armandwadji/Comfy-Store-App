@@ -8,8 +8,8 @@ const Header = () => {
       <ImageBackground
         source={require("../../../../assets/img/main-bcg.jpeg")}
         resizeMode='cover'
-        borderBottomLeftRadius={40}
-        borderBottomRightRadius={40}
+        borderBottomLeftRadius={30}
+        borderBottomRightRadius={30}
         style={{
           width: windowWidth,
           height: windowHeight - 80,

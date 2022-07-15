@@ -22,7 +22,7 @@ const BottomTabScreen = () => {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
-            height: "10%",
+            height: "8%",
           },
           tabBarIcon: ({ focused }) => {
             switch (route.name) {
