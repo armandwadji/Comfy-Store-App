@@ -1,52 +1,21 @@
 import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import React from "react";
 import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
+import styles from "./HeaderStyle";
 
 const Header = () => {
   return (
-    <View style={{ position: "relative" }}>
+    <View style={styles.container}>
       <ImageBackground
         source={require("../../../../assets/img/main-bcg.jpeg")}
         resizeMode='cover'
         borderBottomLeftRadius={30}
         borderBottomRightRadius={30}
-        style={{
-          width: windowWidth,
-          height: windowHeight - 80,
-        }}>
-        <View
-          style={{
-            position: "absolute",
-            top: "40%",
-            left: "10%",
-          }}>
-          <Text
-            style={{
-              color: COLORS.white,
-
-              fontSize: 50,
-              textTransform: "capitalize",
-            }}>
-            rest, relax, unwind
-          </Text>
-          <TouchableOpacity
-            style={{
-              borderWidth: 2,
-              width: 100,
-              borderColor: COLORS.white,
-              borderRadius: 5,
-              padding: 5,
-              marginVertical: 10,
-            }}>
-            <Text
-              style={{
-                color: COLORS.white,
-                fontSize: 15,
-                textAlign: "center",
-                textTransform: "capitalize",
-              }}>
-              shop now
-            </Text>
+        style={styles.imgBackground}>
+        <View style={styles.infoContainer}>
+          <Text style={styles.text}>rest, relax, unwind</Text>
+          <TouchableOpacity style={styles.btnContainer}>
+            <Text style={styles.btn}>shop now</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

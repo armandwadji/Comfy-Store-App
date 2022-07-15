@@ -5,6 +5,7 @@ import Search from "../../components/searchComponent/Search";
 import Header from "../../components/homeComponents/header/Header";
 import Product from "../../components/productComponent/Product";
 import UseProducts from "../../hooks/products/UseProducts";
+import styles from "./HomeScreenStyle";
 
 const HomeScreen = () => {
   //Méthode pour afficher la barre de recherche au scroll positif de l'utilisateur
@@ -26,22 +27,13 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
         snapToEnd={true}
         onScroll={(e) => handleScroll(e)}
-        scrollEventThrottle={10000}
-        style={{
-          flex: 1,
-        }}>
+        scrollEventThrottle={10000}>
         {/* Header */}
         <Header />
 
         {/* Featured */}
-        <Text
-          style={{
-            fontSize: 25,
-            textAlign: "center",
-            marginVertical: 10,
-            color: COLORS.teal,
-          }}>
-          <Text style={{ color: COLORS.orange }}>/</Text> Featured
+        <Text style={styles.textContainer}>
+          <Text style={styles.slashcolor}>/</Text> Featured
         </Text>
 
         {/* Articles */}
