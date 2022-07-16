@@ -1,47 +1,59 @@
-import { View, TextInput, TouchableOpacity } from "react-native";
+import { TextInput, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import Feather from "react-native-vector-icons/Feather";
-import { COLORS, windowWidth } from "../../constants/theme";
+import { COLORS } from "../../constants/theme";
 import styles from "./SearchStyle";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as Animatable from "react-native-animatable";
 
 const Search = ({ scroll }) => {
-  const [show, setShow] = useState(null);
-  const [value, setvalue] = useState(0);
+  //Variable déterminant la distance du top
+  const insets = useSafeAreaInsets();
+
+  //Variables pour l'appartion de la barre de scroll en fonction de la direction du scroll
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState(0);
 
   useEffect(() => {
-    setShow(scroll);
+    setValue(scroll);
     const val = scroll;
-    const res = val - show;
+    const res = val - value;
     // console.log("show :", show);
     // console.log("val :", val);
     // console.log("res :", res);
     if (res > 0) {
-      setvalue(-100);
+      setShow(false);
     } else {
-      setvalue(0);
+      setShow(true);
     }
   }, [scroll]);
 
   return (
-    <TouchableOpacity
+    <Animatable.View
+      animation={show ? "fadeInDown" : "fadeOutUp"}
+      delay={400}
+      duration={400}
+      easing='ease-in'
       style={[
         styles.container,
         {
-          transform: [{ translateY: value }],
+          top: insets.top + 10,
         },
       ]}>
-      <TextInput
-        placeholder='Recherche'
-        placeholderTextColor={COLORS.background}
-        style={styles.textInput}
-      />
-      <Feather
-        name={"search"}
-        size={20}
-        color={COLORS.background}
-        style={styles.icon}
-      />
-    </TouchableOpacity>
+      <TouchableOpacity>
+        <TextInput
+          placeholder='Recherche'
+          placeholderTextColor={COLORS.white}
+          style={styles.textInput}
+        />
+        <Feather
+          name={"search"}
+          size={20}
+          color={COLORS.white}
+          style={styles.icon}
+        />
+      </TouchableOpacity>
+    </Animatable.View>
   );
 };
 

@@ -4,7 +4,7 @@ import BottomTabScreen from "../Routes/Routes";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 
 const Navigation = () => {
-  const Stack = createStackNavigator();
+  const Stack = createSharedElementStackNavigator();
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

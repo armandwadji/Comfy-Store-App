@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import React from "react";
 import { COLORS, windowWidth } from "../../constants/theme";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -22,6 +22,7 @@ const Product = ({ article }) => {
       onPress={() =>
         navigation.push("detail", {
           id,
+          image,
         })
       }>
       <>

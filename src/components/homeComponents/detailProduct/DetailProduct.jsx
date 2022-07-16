@@ -15,9 +15,10 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { formatPrice, truncateText } from "../../utils/Utils";
 import Color from "../colorComponent/Color";
+import * as Animatable from "react-native-animatable";
 
 const DetailProduct = ({ route, navigation }) => {
-  const { id } = route.params;
+  const { id, image } = route.params;
   const [loading, setLoading] = useState(true);
 
   const [descLength, setDesclength] = useState(true);
@@ -65,6 +66,7 @@ const DetailProduct = ({ route, navigation }) => {
             <MaterialIcons name='arrow-back-ios' size={15} />
           </TouchableOpacity>
 
+          {/* DetailContainer */}
           <View
             style={{
               // backgroundColor: "red",
@@ -73,6 +75,7 @@ const DetailProduct = ({ route, navigation }) => {
               display: "flex",
               alignItems: "center",
             }}>
+            {/* Image */}
             <Image
               source={{ uri: product?.fields.image[0].url }}
               resizeMode='cover'
@@ -85,6 +88,8 @@ const DetailProduct = ({ route, navigation }) => {
                 marginBottom: 5,
               }}
             />
+
+            {/* InfoContainer */}
             <View
               style={[
                 styles.info,
@@ -240,36 +245,50 @@ const DetailProduct = ({ route, navigation }) => {
           </View>
 
           {/* AddPanier */}
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
+          <Animatable.View
+            animation='fadeInUp'
+            delay={200}
+            duration={400}
+            easing='ease-in'
             style={[
               styles.addButtonContainer,
               {
                 position: "absolute",
                 bottom: 80,
-                padding: 20,
+                padding: 10,
                 width: windowWidth - 40,
                 backgroundColor: COLORS.orange,
                 zIndex: 1,
                 textAlign: "center",
               },
             ]}>
-            <Text
-              style={[
-                styles.addButton,
-                {
-                  color: COLORS.white,
-                  textAlign: "center",
-                  fontSize: 15,
-                },
-              ]}>
-              Ajouter au panier
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text
+                style={[
+                  styles.addButton,
+                  {
+                    color: COLORS.white,
+                    textAlign: "center",
+                    fontSize: 20,
+                  },
+                ]}>
+                Ajouter au panier
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
         </>
       )}
     </View>
   );
+};
+
+DetailProduct.sharedElements = (route) => {
+  const { id } = route.params;
+  return [
+    {
+      id: id,
+    },
+  ];
 };
 
 export default DetailProduct;
