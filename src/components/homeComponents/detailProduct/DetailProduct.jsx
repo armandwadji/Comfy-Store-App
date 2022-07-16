@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  StyleSheet,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import UseProduct from "../../../hooks/product/UseProduct";
@@ -35,13 +36,16 @@ const DetailProduct = ({ route, navigation }) => {
   }, [product]);
   return (
     <View
-      style={{
-        // backgroundColor: "teal",
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-      }}>
+      style={[
+        StyleSheet.absoluteFillObject,
+        {
+          // backgroundColor: "teal",
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+        },
+      ]}>
       {loading ? (
         <ActivityIndicator size={30} color={COLORS.orange} />
       ) : (
@@ -160,8 +164,8 @@ const DetailProduct = ({ route, navigation }) => {
                       fontSize: 15,
                       color: COLORS.orange,
                     }}>
-                    {" "}
-                    -{" "}
+                    {"   "}
+                    ...
                   </Text>
                 )}
               </Text>

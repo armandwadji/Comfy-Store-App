@@ -5,6 +5,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import styles from "./productStyle";
 import { useNavigation } from "@react-navigation/native";
 import { formatPrice } from "../utils/Utils";
+import { SharedElement } from "react-navigation-shared-element";
 
 const Product = ({ article }) => {
   const navigation = useNavigation();
@@ -32,6 +33,7 @@ const Product = ({ article }) => {
             resizeMode={"cover"}
             style={styles.img}
           />
+
           <TouchableOpacity style={styles.icon}>
             <AntDesign name='hearto' size={25} color={COLORS.black} />
           </TouchableOpacity>

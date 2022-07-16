@@ -9,7 +9,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { Animated, Dimensions, StyleSheet } from "react-native";
 import { useRef } from "react";
-import { COLORS, windowWidth } from "../constants/theme";
+import { COLORS, windowHeight, windowWidth } from "../constants/theme";
 
 const BottomTabScreen = () => {
   const Tab = createBottomTabNavigator();
@@ -22,7 +22,7 @@ const BottomTabScreen = () => {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
-            height: "8%",
+            height: "10%",
           },
           tabBarIcon: ({ focused }) => {
             switch (route.name) {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 2,
     backgroundColor: COLORS.orange,
-    bottom: 30,
+    top: windowHeight - 30,
     left: windowWidth / 3 / 2 - 20,
     zIndex: 100,
   },

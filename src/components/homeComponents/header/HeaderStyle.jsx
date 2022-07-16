@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: COLORS.white,
-    fontSize: 50,
+    fontSize: 60,
     textTransform: "capitalize",
   },
   btnContainer: {
