@@ -1,17 +1,25 @@
-import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import styles from "./HeaderStyle";
-import { KaushanScript_400Regular } from "@expo-google-fonts/kaushan-script";
-import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
+import {
+  KaushanScript_400Regular,
+  useFonts,
+} from "@expo-google-fonts/kaushan-script";
 
 const Header = () => {
   let [fontsLoaded, error] = useFonts({
     title: KaushanScript_400Regular,
   });
 
+  //Condition dans le cas où la font n'est pas encore charger
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <ActivityIndicator />;
   }
   return (
     <View style={styles.container}>
