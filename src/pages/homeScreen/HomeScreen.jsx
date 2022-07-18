@@ -1,6 +1,6 @@
 import { Text, ScrollView, FlatList } from "react-native";
 import React, { useState } from "react";
-import { COLORS } from "../../constants/theme";
+
 import Search from "../../components/searchComponent/Search";
 import Header from "../../components/homeComponents/header/Header";
 import Product from "../../components/productComponent/Product";
@@ -17,7 +17,7 @@ const HomeScreen = () => {
   //On va chercher la data grace à un hook personnalisé useproducts
   const products = UseProducts();
   const featured = products?.filter((product) => product.fields.featured);
-  // console.log(featured.length);
+
   return (
     <>
       {/* Searchinput */}
@@ -26,8 +26,10 @@ const HomeScreen = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         snapToEnd={true}
+        bounces={false}
+        StickyHeaderComponent={<Search />}
         onScroll={(e) => handleScroll(e)}
-        scrollEventThrottle={10000}>
+        scrollEventThrottle={500}>
         {/* Header */}
         <Header />
 

@@ -1,12 +1,14 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
-import { COLORS, windowWidth } from "../../constants/theme";
+import React, { useState } from "react";
+import { COLORS } from "../../constants/theme";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import styles from "./productStyle";
 import { useNavigation } from "@react-navigation/native";
-import { formatPrice } from "../utils/Utils";
+import { formatPrice } from "../../utils/Utils";
 
 const Product = ({ article }) => {
+  const [like, setLike] = useState(false);
+
   const navigation = useNavigation();
 
   const {
@@ -21,6 +23,7 @@ const Product = ({ article }) => {
       onPress={() =>
         navigation.push("detail", {
           id,
+          like,
         })
       }>
       <>
@@ -32,8 +35,13 @@ const Product = ({ article }) => {
             resizeMode={"cover"}
             style={styles.img}
           />
-          <TouchableOpacity style={styles.icon}>
-            <AntDesign name='hearto' size={25} color={COLORS.black} />
+
+          <TouchableOpacity style={styles.icon} onPress={() => setLike(!like)}>
+            <AntDesign
+              name={like ? "heart" : "hearto"}
+              size={25}
+              color={like ? COLORS.red : COLORS.black}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.infoContainer}>
