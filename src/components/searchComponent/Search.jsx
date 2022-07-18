@@ -31,8 +31,8 @@ const Search = ({ scroll }) => {
   return (
     <Animatable.View
       animation={show ? "fadeInDown" : "fadeOutUp"}
-      delay={400}
-      duration={400}
+      delay={200}
+      duration={200}
       easing='ease-in'
       style={[
         styles.container,

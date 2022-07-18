@@ -19,7 +19,8 @@ import { formatPrice, truncateText } from "../../../utils/Utils";
 import AddPanier from "../../addpanier/AddPanier";
 
 const DetailProduct = ({ route, navigation }) => {
-  const { id } = route.params;
+  const { id, like } = route.params;
+
   const [loading, setLoading] = useState(true);
 
   const [descLength, setDesclength] = useState(true);
@@ -64,10 +65,11 @@ const DetailProduct = ({ route, navigation }) => {
               {/* Title */}
               <View style={[styles.titleContainer]}>
                 <Text style={[styles.title]}>{product?.fields.name}</Text>
+
                 <AntDesign
-                  name='hearto'
+                  name={like ? "heart" : "hearto"}
                   size={20}
-                  color={COLORS.black}
+                  color={like ? COLORS.red : COLORS.black}
                   style={{ paddingRight: 10 }}
                 />
               </View>
