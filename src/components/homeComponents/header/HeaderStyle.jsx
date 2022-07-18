@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     left: "10%",
   },
   text: {
+    // fontFamily: "title",
     color: COLORS.white,
     fontSize: 60,
     textTransform: "capitalize",
