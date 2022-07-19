@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, SafeAreaView } from "react-native";
+import { View, ScrollView, SafeAreaView } from "react-native";
 import React from "react";
 import Search from "../../components/searchComponent/Search";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
