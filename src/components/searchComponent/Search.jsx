@@ -6,7 +6,7 @@ import styles from "./SearchStyle";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 
-const Search = ({ scroll }) => {
+const Search = ({ scroll, color }) => {
   //Variable déterminant la distance du top
   const insets = useSafeAreaInsets();
 
@@ -43,13 +43,13 @@ const Search = ({ scroll }) => {
       <TouchableOpacity>
         <TextInput
           placeholder='Recherche'
-          placeholderTextColor={COLORS.white}
-          style={styles.textInput}
+          placeholderTextColor={color}
+          style={[styles.textInput, { borderColor: color }]}
         />
         <Feather
           name={"search"}
           size={20}
-          color={COLORS.white}
+          color={color ? color : COLORS.white}
           style={styles.icon}
         />
       </TouchableOpacity>

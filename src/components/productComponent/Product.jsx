@@ -14,11 +14,11 @@ const Product = ({ article }) => {
   const {
     id,
     fields: { price, name, image },
-  } = article.item;
+  } = article;
 
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[styles.container]}
       activeOpacity={0.8}
       onPress={() =>
         navigation.push("detail", {
@@ -27,19 +27,19 @@ const Product = ({ article }) => {
         })
       }>
       <>
-        <View style={styles.imgContainer}>
+        <View style={[styles.imgContainer, { transform: [{ scale: 1 }] }]}>
           <Image
             source={{
               uri: image[0].url,
             }}
             resizeMode={"cover"}
-            style={styles.img}
+            style={[styles.img]}
           />
 
           <TouchableOpacity style={styles.icon} onPress={() => setLike(!like)}>
             <AntDesign
               name={like ? "heart" : "hearto"}
-              size={25}
+              size={20}
               color={like ? COLORS.red : COLORS.black}
             />
           </TouchableOpacity>

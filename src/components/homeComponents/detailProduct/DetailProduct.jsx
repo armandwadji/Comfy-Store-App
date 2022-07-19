@@ -115,6 +115,7 @@ const DetailProduct = ({ route, navigation }) => {
                 data={product.fields.colors}
                 keyExtractor={(article, index) => index}
                 horizontal={true}
+                bounces={false}
                 renderItem={(color) => <Color color={color} />}
               />
             </View>

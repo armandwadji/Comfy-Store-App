@@ -3,14 +3,18 @@ import { COLORS, windowWidth } from "../../constants/theme";
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    padding: 10,
-    width: windowWidth - 50,
+    // backgroundColor: "red",
+    // display: "flex",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // flexDirection: "column",
+    // marginLeft: 5,
+    paddingHorizontal: 5,
+    marginBottom: 10,
+    width: windowWidth / 2,
   },
   imgContainer: {
+    backgroundColor: "green",
     width: "100%",
     height: 250,
     backgroundColor: COLORS.background,
@@ -19,7 +23,7 @@ const styles = StyleSheet.create({
   },
   img: {
     height: "100%",
-    width: "100%",
+    // width: "100%",
     borderRadius: 5,
   },
   icon: {
