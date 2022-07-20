@@ -5,21 +5,33 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
-import { COLORS, windowHeight } from "../../constants/theme";
+import { COLORS, URLProducts, windowHeight } from "../../constants/theme";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
 import Header from "../../components/storeComponents/header/Header";
 import UseProducts from "../../hooks/products/UseProducts";
+import axios from "axios";
 
 const StoreScreen = () => {
-  let [translate, setTranslate] = useState(windowHeight);
+  const [translate, setTranslate] = useState(windowHeight);
+  const [productsFilter, setProductsFilter] = useState("");
 
   const getTranslate = (value) => {
     setTranslate(value);
   };
 
   const products = UseProducts();
+
+  const fetchProducts = async () => {
+    const res = await axios.get(URLProducts);
+    const data = await res.data;
+    setProductsFilter(data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <SafeAreaView>
@@ -31,11 +43,11 @@ const StoreScreen = () => {
           stickyHeaderIndices={[0]}
           showsVerticalScrollIndicator={false}>
           {/* Header */}
-          <Header getTranslate={getTranslate} />
+          <Header getTranslate={getTranslate} productsFilter={productsFilter} />
 
           {/* Products */}
-          {products ? (
-            <StoreProducts products={products} />
+          {productsFilter.length > 0 ? (
+            <StoreProducts products={productsFilter} />
           ) : (
             <ActivityIndicator size={30} color={COLORS.orange} />
           )}
@@ -48,6 +60,7 @@ const StoreScreen = () => {
           translate={translate}
           getTranslate={getTranslate}
           products={products}
+          getProductFilter={setProductsFilter}
         />
       )}
     </SafeAreaView>

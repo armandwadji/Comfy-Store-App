@@ -3,17 +3,19 @@ import React from "react";
 import { COLORS, windowHeight } from "../../../constants/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const Header = ({ getTranslate }) => {
+const Header = ({ getTranslate, productsFilter }) => {
   return (
     <View style={[styles.header]}>
       <View style={styles.left}>
         <Text style={styles.title}>Store</Text>
-        <Text style={styles.productsCounts}>XX Produits</Text>
+        <Text style={styles.productsCounts}>
+          {productsFilter.length} Produits
+        </Text>
       </View>
       <View style={styles.right}>
         <Text style={styles.filter}>filter</Text>
 
-        <TouchableOpacity onPress={() => getTranslate(windowHeight / 1 / 8)}>
+        <TouchableOpacity onPress={() => getTranslate(windowHeight / 2)}>
           <Ionicons name={"ios-filter"} size={25} />
         </TouchableOpacity>
       </View>
