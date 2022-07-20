@@ -39,7 +39,7 @@ const Product = ({ article }) => {
           <TouchableOpacity style={styles.icon} onPress={() => setLike(!like)}>
             <AntDesign
               name={like ? "heart" : "hearto"}
-              size={20}
+              size={18}
               color={like ? COLORS.red : COLORS.black}
             />
           </TouchableOpacity>

@@ -48,7 +48,12 @@ const DetailProduct = ({ route, navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={[styles.backIcon]}>
-            <MaterialIcons name='arrow-back-ios' size={15} />
+            <MaterialIcons
+              name='arrow-back-ios'
+              size={20}
+              color={COLORS.orange}
+              style={{}}
+            />
           </TouchableOpacity>
 
           {/* DetailContainer */}

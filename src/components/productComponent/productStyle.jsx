@@ -23,13 +23,17 @@ const styles = StyleSheet.create({
   },
   img: {
     height: "100%",
-    // width: "100%",
     borderRadius: 5,
   },
   icon: {
     position: "absolute",
-    right: 15,
+    right: 10,
     top: 10,
+    borderWidth: 1,
+    borderRadius: "100%",
+    borderColor: COLORS.grey,
+    padding: 5,
+    backgroundColor: COLORS.grey,
   },
   infoContainer: {
     width: "100%",
