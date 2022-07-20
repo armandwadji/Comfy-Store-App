@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ActivityIndicator,
+  Text,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
@@ -15,7 +16,7 @@ import axios from "axios";
 
 const StoreScreen = () => {
   const [translate, setTranslate] = useState(windowHeight);
-  const [productsFilter, setProductsFilter] = useState("");
+  const [productsFilter, setProductsFilter] = useState(null);
 
   const getTranslate = (value) => {
     setTranslate(value);
@@ -46,8 +47,15 @@ const StoreScreen = () => {
           <Header getTranslate={getTranslate} productsFilter={productsFilter} />
 
           {/* Products */}
-          {productsFilter.length > 0 ? (
-            <StoreProducts products={productsFilter} />
+          {productsFilter ? (
+            productsFilter.length > 0 ? (
+              <StoreProducts products={productsFilter} />
+            ) : (
+              <Text
+                style={[{ fontSize: 25, textAlign: "center", marginTop: 10 }]}>
+                Aucun produit disponible
+              </Text>
+            )
           ) : (
             <ActivityIndicator size={30} color={COLORS.orange} />
           )}

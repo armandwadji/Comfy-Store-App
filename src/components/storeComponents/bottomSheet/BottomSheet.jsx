@@ -5,12 +5,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
 import Search from "../../searchComponent/Search";
-
 import Slider from "@react-native-community/slider";
-import { formatPrice } from "../../../utils/Utils";
 
 const BottomSheet = ({
   translate,
@@ -18,6 +16,7 @@ const BottomSheet = ({
   products,
   getProductFilter,
 }) => {
+  // Le scroll vers le bas ferme la fenetre de filtre
   const handleScroll = (e) => {
     if (e.nativeEvent.contentOffset.y < -5) {
       getTranslate(windowHeight);
@@ -25,6 +24,7 @@ const BottomSheet = ({
     }
   };
 
+  //On stock toutes les catégories disponibles
   const companies = [
     "all",
     ...new Set(products?.map((item) => item.fields.company)),
@@ -32,31 +32,50 @@ const BottomSheet = ({
 
   //On trouve le pris maximum des articles
   const prices = [...new Set(products?.map((item) => item.fields.price))];
-  const maxPrices = formatPrice(Math.max(...prices));
+  const maxPrices = Math.max(...prices) / 10;
 
   // On initialise un tableau vide de produits filters
   let productsFilter = [...products];
 
-  const [categorie, setCategorie] = useState("all");
   const [price, setprice] = useState(parseInt(maxPrices) + 1);
+  const [categorie, setCategorie] = useState("all");
+  const [search, setSearch] = useState("");
 
-  const handleFilterCompany = (company, price) => {
+  const handleFilterCompany = (company, price, search) => {
     // On change la couleur du boutton clicker
-    setCategorie(company);
+
     setprice(parseInt(price));
 
+    // Filtre selon le prix
+
+    productsFilter = products.filter(
+      (product) => product.fields.price / 10 <= price
+    );
+
+    // Filtre selon la categorie
     if (company !== "all") {
-      productsFilter = productsFilter
-        .filter((product) => product.fields.company === company)
-        .filter((product) => product.fields.price <= price * 10);
-    } else {
-      productsFilter = products.filter(
-        (product) => product.fields.price <= price * 10
+      productsFilter = productsFilter.filter(
+        (product) => product.fields.company === company
       );
     }
 
+    // Filtre selon la recherche
+    if (search) {
+      productsFilter = productsFilter.filter((product) => {
+        if (product.fields.name.includes(search.toLowerCase())) {
+          return product;
+        }
+      });
+    }
+
+    // On actualise le filtre apres les modifications
     getProductFilter(productsFilter);
   };
+
+  // On exécute la fonction a chaque fois que l'un des trois paramètre de cette fonction est modifié
+  useEffect(() => {
+    handleFilterCompany(categorie, price, search);
+  }, [categorie, price, search]);
 
   return (
     <View
@@ -71,7 +90,11 @@ const BottomSheet = ({
         scrollEventThrottle={500}
         style={{}}>
         <View style={styles.line} />
-        <Search color={COLORS.black} />
+        <Search
+          color={COLORS.black}
+          setSearch={setSearch}
+          handleFilterCompany={handleFilterCompany}
+        />
 
         {/* parameters */}
         <View
@@ -102,7 +125,7 @@ const BottomSheet = ({
               {companies.map((company) => (
                 <TouchableOpacity
                   key={company}
-                  onPress={() => handleFilterCompany(company, price)}
+                  onPress={() => setCategorie(company)}
                   style={[
                     {
                       marginHorizontal: 10,
@@ -154,9 +177,7 @@ const BottomSheet = ({
               minimumTrackTintColor={COLORS.orange}
               maximumTrackTintColor={COLORS.background}
               value={maxPrices}
-              onValueChange={(value) =>
-                handleFilterCompany(categorie, parseInt(value))
-              }
+              onValueChange={(value) => setprice(parseInt(value))}
             />
           </>
         </View>

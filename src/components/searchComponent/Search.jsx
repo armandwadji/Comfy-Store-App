@@ -6,7 +6,7 @@ import styles from "./SearchStyle";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 
-const Search = ({ scroll, color, distance }) => {
+const Search = ({ scroll, color, setSearch, handleFilterCompany }) => {
   //Variable déterminant la distance du top
   const insets = useSafeAreaInsets();
 
@@ -42,8 +42,9 @@ const Search = ({ scroll, color, distance }) => {
       ]}>
       <TouchableOpacity>
         <TextInput
+          onChangeText={(text) => setSearch(text)}
           placeholder='Recherche'
-          placeholderTextColor={color}
+          placeholderTextColor={COLORS.black}
           style={[styles.textInput, { borderColor: color }]}
         />
         <Feather

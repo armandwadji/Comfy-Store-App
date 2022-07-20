@@ -1,4 +1,4 @@
-import { Text, ScrollView, FlatList } from "react-native";
+import { Text, ScrollView, FlatList, Image, View } from "react-native";
 import React, { useState } from "react";
 
 import Search from "../../components/searchComponent/Search";
@@ -22,7 +22,7 @@ const HomeScreen = () => {
   return (
     <>
       {/* Searchinput */}
-      <Search scroll={scroll} color={COLORS.white} />
+      {/* <Search scroll={scroll} color={COLORS.white} /> */}
 
       <ScrollView
         showsVerticalScrollIndicator={false}

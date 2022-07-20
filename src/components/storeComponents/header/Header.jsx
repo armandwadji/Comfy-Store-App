@@ -9,7 +9,7 @@ const Header = ({ getTranslate, productsFilter }) => {
       <View style={styles.left}>
         <Text style={styles.title}>Store</Text>
         <Text style={styles.productsCounts}>
-          {productsFilter.length} Produits
+          {productsFilter && productsFilter.length} Produits
         </Text>
       </View>
       <View style={styles.right}>

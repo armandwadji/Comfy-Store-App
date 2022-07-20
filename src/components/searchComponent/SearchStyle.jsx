@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -windowWidth / 2 + 20 }],
     padding: 10,
     paddingLeft: 40,
-    color: COLORS.white,
+    color: COLORS.black,
     borderWidth: 1,
     borderColor: COLORS.white,
     borderRadius: 5,
