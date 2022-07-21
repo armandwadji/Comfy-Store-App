@@ -48,7 +48,7 @@ const BasketScreen = () => {
                     <Text style={[styles.treeTimes]}>3x</Text>
                   </View>
                   <View>
-                    <Text style={{ opacity: 0.8 }}> sans frais</Text>
+                    <Text style={{ opacity: 0.8 }}> sans frais.</Text>
                     <Text
                       style={{
                         backgroundColor: COLORS.black,
