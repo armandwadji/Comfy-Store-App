@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: "bold",
+    textTransform: "capitalize",
     color: COLORS.orange,
   },
 });

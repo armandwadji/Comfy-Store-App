@@ -2,46 +2,64 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { COLORS, windowWidth } from "../../../constants/theme";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { formatPrice } from "../../../utils/Utils";
+import { useGlobalContext } from "../../../context/Context";
 
-const Article = () => {
+import * as Animatable from "react-native-animatable";
+import { useIsFocused } from "@react-navigation/native";
+
+const Article = ({ article, index }) => {
+  const { increase, decrease, delPanier } = useGlobalContext();
+  const { id, name, price, image, amount } = article;
+
+  //Vavriable pour savoir si nous somme sur la fenetre en question
+  const isFocused = useIsFocused();
+
   return (
     <>
       {/* Article */}
-      <View>
+      <Animatable.View
+        animation={isFocused ? "slideInLeft" : "slideOutLeft"}
+        duration={400 * (index + 1)}>
         <Text style={[styles.line]}></Text>
         <View style={[styles.articleContainer]}>
           <View style={[styles.left]}>
             <Image
-              source={{ uri: "https://picsum.photos/500/800" }}
+              source={{ uri: image }}
               resizeMode='cover'
               style={[styles.img]}
             />
           </View>
           <View style={[styles.rigth]}>
-            <Text style={[styles.title]}>name article</Text>
+            <Text style={[styles.title]}>{name}</Text>
             <Text style={[styles.expedition]}>
               Expédition estimée sous 7 jours ouvrés
             </Text>
-            <Text style={[styles.price]}>999 €</Text>
+            <Text style={[styles.price]}>{formatPrice(price)}</Text>
             <View style={[styles.amount]}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => decrease(id)}>
                 <AntDesign name='minus' size={15} />
               </TouchableOpacity>
-              <Text>1</Text>
-              <TouchableOpacity>
+              <Text style={[styles.amountCount]}>{amount}</Text>
+              <TouchableOpacity onPress={() => increase(id)}>
                 <AntDesign name='plus' size={15} />
               </TouchableOpacity>
             </View>
             <View style={[styles.deleteContainer]}>
-              <TouchableOpacity style={[styles.delete]}>
+              <TouchableOpacity
+                style={[styles.delete]}
+                onPress={() => delPanier(id)}>
                 <AntDesign name='delete' size={15} />
                 <Text style={[styles.deleteText]}>Supprimer l'artilce</Text>
               </TouchableOpacity>
-              <Text style={[styles.price]}> 799 €</Text>
+              <Text style={[styles.price]}>
+                {" "}
+                {formatPrice(price * amount)}{" "}
+              </Text>
             </View>
           </View>
         </View>
-      </View>
+      </Animatable.View>
     </>
   );
 };
@@ -74,6 +92,7 @@ const styles = StyleSheet.create({
     left: 0,
     height: "50%",
     width: "100%",
+    borderRadius: 5,
   },
   rigth: {
     // backgroundColor: "yellow",
@@ -95,7 +114,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "500",
     marginVertical: 5,
   },
   amount: {
@@ -108,6 +127,9 @@ const styles = StyleSheet.create({
     borderColor: COLORS.background,
     width: 100,
     marginVertical: 5,
+  },
+  amountCount: {
+    fontSize: 16,
   },
   deleteContainer: {
     display: "flex",

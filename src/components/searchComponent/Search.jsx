@@ -6,7 +6,7 @@ import styles from "./SearchStyle";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 
-const Search = ({ scroll, color, setSearch, handleFilterCompany }) => {
+const Search = ({ scroll, color, setSearch }) => {
   //Variable déterminant la distance du top
   const insets = useSafeAreaInsets();
 

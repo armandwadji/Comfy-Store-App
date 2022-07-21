@@ -6,7 +6,10 @@ import styles from "./productStyle";
 import { useNavigation } from "@react-navigation/native";
 import { formatPrice } from "../../utils/Utils";
 
-const Product = ({ article }) => {
+import * as Animatable from "react-native-animatable";
+import { useIsFocused } from "@react-navigation/native";
+
+const Product = ({ article, index }) => {
   const [like, setLike] = useState(false);
 
   const navigation = useNavigation();
@@ -16,6 +19,8 @@ const Product = ({ article }) => {
     fields: { price, name, image },
   } = article;
 
+  const isFocused = useIsFocused();
+
   return (
     <TouchableOpacity
       style={[styles.container]}
@@ -23,10 +28,15 @@ const Product = ({ article }) => {
       onPress={() =>
         navigation.push("detail", {
           id,
+          name,
+          price,
+          image: image[0].url,
           like,
         })
       }>
-      <>
+      <Animatable.View
+        animation={isFocused ? "zoomIn" : "zoomOut"}
+        duration={200 * (index + 1)}>
         <View style={[styles.imgContainer, { transform: [{ scale: 1 }] }]}>
           <Image
             source={{
@@ -48,7 +58,7 @@ const Product = ({ article }) => {
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.price}>{formatPrice(price)}</Text>
         </View>
-      </>
+      </Animatable.View>
     </TouchableOpacity>
   );
 };

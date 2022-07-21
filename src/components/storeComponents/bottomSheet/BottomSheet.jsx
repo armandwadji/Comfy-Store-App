@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
 import Search from "../../searchComponent/Search";
 import Slider from "@react-native-community/slider";
+import * as Animatable from "react-native-animatable";
 
 const BottomSheet = ({
   translate,
@@ -19,8 +20,8 @@ const BottomSheet = ({
   // Le scroll vers le bas ferme la fenetre de filtre
   const handleScroll = (e) => {
     if (e.nativeEvent.contentOffset.y < -5) {
-      getTranslate(windowHeight);
       // console.log(e.nativeEvent.contentOffset.y);
+      getTranslate(false);
     }
   };
 
@@ -47,7 +48,6 @@ const BottomSheet = ({
     setprice(parseInt(price));
 
     // Filtre selon le prix
-
     productsFilter = products.filter(
       (product) => product.fields.price / 10 <= price
     );
@@ -78,12 +78,18 @@ const BottomSheet = ({
   }, [categorie, price, search]);
 
   return (
-    <View
+    <Animatable.View
+      animation={translate ? "slideInUp" : "slideOutDown"}
+      easing='ease'
       style={[
         styles.bottomSheetContainer,
-        {
-          top: translate,
-        },
+        translate
+          ? {
+              display: "block",
+            }
+          : {
+              display: "none",
+            },
       ]}>
       <ScrollView
         onScroll={(e) => handleScroll(e)}
@@ -182,7 +188,7 @@ const BottomSheet = ({
           </>
         </View>
       </ScrollView>
-    </View>
+    </Animatable.View>
   );
 };
 
@@ -195,6 +201,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     position: "absolute",
     borderRadius: 30,
+    top: windowHeight / 2,
   },
   line: {
     width: 85,

@@ -7,13 +7,17 @@ import BasketScreen from "../pages/basketScreen/BasketScreen";
 import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-import { Animated, Dimensions, StyleSheet } from "react-native";
+import { Animated, StyleSheet, Text, View } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { useRef } from "react";
 import { COLORS, windowHeight, windowWidth } from "../constants/theme";
+import { useGlobalContext } from "../context/Context";
 
 const BottomTabScreen = () => {
   const Tab = createBottomTabNavigator();
   const offSetAnimation = useRef(new Animated.Value(0)).current;
+
+  const { totalAmount } = useGlobalContext();
 
   return (
     <>
@@ -48,14 +52,20 @@ const BottomTabScreen = () => {
 
               case "Basket":
                 if (!focused) {
-                  return <SimpleLineIcons name='basket' size={35} />;
+                  return (
+                    <>
+                      <SimpleLineIcons name='basket' size={35} />
+                    </>
+                  );
                 } else {
                   return (
-                    <FontAwesome
-                      name='shopping-cart'
-                      size={35}
-                      color={COLORS.orange}
-                    />
+                    <>
+                      <FontAwesome
+                        name='shopping-cart'
+                        size={35}
+                        color={COLORS.orange}
+                      />
+                    </>
                   );
                 }
 
@@ -111,6 +121,14 @@ const BottomTabScreen = () => {
             ],
           },
         ]}></Animated.View>
+      {
+        <Animatable.View
+          animation={totalAmount > 0 ? "fadeInUp" : "fadeOutUp"}
+          easing='ease-out'
+          style={[styles.totalAmount]}>
+          <Text style={{ color: COLORS.white }}>{totalAmount}</Text>
+        </Animatable.View>
+      }
     </>
   );
 };
@@ -124,6 +142,20 @@ const styles = StyleSheet.create({
     top: windowHeight - 30,
     left: windowWidth / 3 / 2 - 20,
     zIndex: 100,
+  },
+  totalAmount: {
+    position: "absolute",
+    backgroundColor: COLORS.orange,
+    color: COLORS.white,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 25,
+    width: 25,
+    borderRadius: 10000,
+    zIndex: 100,
+    bottom: windowHeight / 13.5,
+    right: windowWidth / 13,
   },
 });
 

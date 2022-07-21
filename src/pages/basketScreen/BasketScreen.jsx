@@ -5,17 +5,27 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HeaderBasket from "../../components/basketComponents/headerBasket/HeaderBasket";
-import { COLORS, windowWidth } from "../../constants/theme";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import { COLORS, windowHeight, windowWidth } from "../../constants/theme";
 import Articles from "../../components/basketComponents/articles/Articles";
+import { useGlobalContext } from "../../context/Context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as Animatable from "react-native-animatable";
+
+import { formatPrice } from "../../utils/Utils";
+import { useIsFocused } from "@react-navigation/native";
 
 const BasketScreen = () => {
+  const { totalPrice, totalAmount } = useGlobalContext();
+
+  //Variable déterminant la distance du top
   const insets = useSafeAreaInsets();
+
+  //Vavriable pour savoir si nous somme sur la fenetre en question
+  const isFocused = useIsFocused();
+
   return (
     <SafeAreaView>
       <View
@@ -26,41 +36,69 @@ const BasketScreen = () => {
           stickyHeaderIndices={[0]}
           showsVerticalScrollIndicator={false}>
           <HeaderBasket />
-
-          {/* Articles du panier */}
-          <Articles />
-
-          {/* total du panier */}
-          <View>
-            <Text style={[styles.line]}></Text>
-            <View style={[styles.totalContainer]}>
-              <View style={[styles.left]}>
-                <Text>Sous-total (3 Articles)</Text>
-              </View>
-              <View style={[styles.rigth]}>
-                <Text style={[styles.price]}>1000 €</Text>
-                <Text style={[styles.livraison]}>(Hors livraison)</Text>
-                <View style={[styles.paiement]}>
-                  <View style={{ opacity: 0.8 }}>
-                    <Text>Ou paiement en </Text>
+          {totalAmount === 0 ? (
+            <View
+              style={{
+                // backgroundColor: "red",
+                height: windowHeight - insets.top * 4,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}>
+              <Animatable.Image
+                animation={isFocused ? "fadeInDown" : "fadeInUp"}
+                easing={"ease-in-out"}
+                source={require("../../../assets/img/images.png")}
+                resizeMode='contain'
+                style={{ height: 150 }}
+              />
+              <Animatable.Text
+                animation={isFocused ? "fadeInUp" : "fadeInDown"}
+                style={[styles.emptyBasket]}>
+                Votre panier est vide !
+              </Animatable.Text>
+            </View>
+          ) : (
+            <>
+              {/* Articles du panier */}
+              <Articles />
+              {/* total du panier */}
+              <Animatable.View
+                animation={isFocused ? "slideInRight" : "slideOutRight"}
+                duration={0}>
+                <Text style={[styles.line]}></Text>
+                <View style={[styles.totalContainer]}>
+                  <View style={[styles.left]}>
+                    <Text>Sous-total ({totalAmount} Articles)</Text>
                   </View>
-                  <View style={[styles.treeTimesContainer]}>
-                    <Text style={[styles.treeTimes]}>3x</Text>
-                  </View>
-                  <View>
-                    <Text style={{ opacity: 0.8 }}> sans frais.</Text>
-                    <Text
-                      style={{
-                        backgroundColor: COLORS.black,
-                        height: 0.7,
-                        marginTop: 2,
-                        marginLeft: 3,
-                      }}></Text>
+                  <View style={[styles.rigth]}>
+                    <Text style={[styles.price]}>
+                      {formatPrice(totalPrice)}
+                    </Text>
+                    <Text style={[styles.livraison]}>(Hors livraison)</Text>
+                    <View style={[styles.paiement]}>
+                      <View style={{ opacity: 0.8 }}>
+                        <Text>Ou paiement en </Text>
+                      </View>
+                      <View style={[styles.treeTimesContainer]}>
+                        <Text style={[styles.treeTimes]}>3x</Text>
+                      </View>
+                      <View>
+                        <Text style={{ opacity: 0.8 }}> sans frais</Text>
+                        <Text
+                          style={{
+                            backgroundColor: COLORS.black,
+                            height: 0.5,
+                            marginTop: 2,
+                            marginLeft: 5,
+                          }}></Text>
+                      </View>
+                    </View>
                   </View>
                 </View>
-              </View>
-            </View>
-          </View>
+              </Animatable.View>
+            </>
+          )}
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -70,6 +108,11 @@ const BasketScreen = () => {
 export default BasketScreen;
 
 const styles = StyleSheet.create({
+  emptyBasket: {
+    marginVertical: 15,
+    fontSize: 20,
+    textAlign: "center",
+  },
   totalContainer: {
     // backgroundColor: "red",
     display: "flex",
@@ -87,7 +130,7 @@ const styles = StyleSheet.create({
   left: {
     // backgroundColor: "green",
     flex: 1,
-    paddingLeft: 2,
+    paddingLeft: 5,
   },
   rigth: {
     // backgroundColor: "yellow",

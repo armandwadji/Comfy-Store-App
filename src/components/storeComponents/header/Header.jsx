@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { COLORS, windowHeight } from "../../../constants/theme";
+import { COLORS } from "../../../constants/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Header = ({ getTranslate, productsFilter }) => {
@@ -15,7 +15,7 @@ const Header = ({ getTranslate, productsFilter }) => {
       <View style={styles.right}>
         <Text style={styles.filter}>filter</Text>
 
-        <TouchableOpacity onPress={() => getTranslate(windowHeight / 2)}>
+        <TouchableOpacity onPress={() => getTranslate(true)}>
           <Ionicons name={"ios-filter"} size={25} />
         </TouchableOpacity>
       </View>
