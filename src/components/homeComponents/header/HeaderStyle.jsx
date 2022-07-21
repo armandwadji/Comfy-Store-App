@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     position: "absolute",
-    top: "40%",
+    top: "30%",
     left: "10%",
   },
   text: {

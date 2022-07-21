@@ -48,7 +48,12 @@ const DetailProduct = ({ route, navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={[styles.backIcon]}>
-            <MaterialIcons name='arrow-back-ios' size={15} />
+            <MaterialIcons
+              name='arrow-back-ios'
+              size={20}
+              color={COLORS.orange}
+              style={{}}
+            />
           </TouchableOpacity>
 
           {/* DetailContainer */}
@@ -115,6 +120,7 @@ const DetailProduct = ({ route, navigation }) => {
                 data={product.fields.colors}
                 keyExtractor={(article, index) => index}
                 horizontal={true}
+                bounces={false}
                 renderItem={(color) => <Color color={color} />}
               />
             </View>

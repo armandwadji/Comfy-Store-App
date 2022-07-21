@@ -4,6 +4,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import React from "react";
 import styles from "./HeaderStyle";

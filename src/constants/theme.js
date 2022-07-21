@@ -10,6 +10,7 @@ const COLORS = {
   orange: "#BA5D2C",
   red: "red",
   white: "#FFFFFF",
+  grey: "#F2F2F2",
   black: "#070B0D",
   teal: "#102A42",
   background: "#CFD6E0",

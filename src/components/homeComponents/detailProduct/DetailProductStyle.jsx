@@ -3,7 +3,6 @@ import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
 
 const styles = StyleSheet.create({
   detailProductContainer: {
-    // backgroundColor: "teal",
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -11,19 +10,19 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     position: "absolute",
-    top: 50,
+    top: 45,
     zIndex: 1,
     left: 20,
+    borderRadius: "100%",
+    padding: 5,
   },
   detailContainer: {
-    // backgroundColor: "red",
     height: windowHeight,
     width: windowWidth,
     display: "flex",
     alignItems: "center",
   },
   img: {
-    // backgroundColor: "red",
     height: windowHeight / 3,
     width: windowWidth - 10,
     borderRadius: 5,
@@ -31,12 +30,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   infoContainer: {
-    // backgroundColor: "green",
     width: windowWidth,
     paddingHorizontal: 5,
   },
   titleContainer: {
-    // backgroundColor: "green",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -49,7 +46,6 @@ const styles = StyleSheet.create({
     color: COLORS.teal,
   },
   description: {
-    // backgroundColor: "red",
     width: windowWidth / 1.1,
     paddingRight: 20,
     paddingLeft: 5,
