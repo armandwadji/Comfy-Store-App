@@ -42,7 +42,9 @@ const HomeScreen = () => {
         {/* Articles */}
         <FlatList
           data={featured}
-          renderItem={({ item }) => <Product article={item} />}
+          renderItem={({ item, index }) => (
+            <Product article={item} index={index} />
+          )}
           keyExtractor={(article) => article.id}
           showsHorizontalScrollIndicator={false}
           horizontal={true}

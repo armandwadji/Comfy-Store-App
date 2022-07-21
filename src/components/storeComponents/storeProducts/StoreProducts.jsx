@@ -3,16 +3,10 @@ import React from "react";
 import Product from "../../productComponent/Product";
 
 const StoreProducts = ({ products }) => {
-  // const products = UseProducts();
   return (
-    <View
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-      }}>
+    <View style={[styles.products]}>
       {products?.map((item, index) => (
-        <Product article={item} key={index} />
+        <Product article={item} key={index} index={index} />
       ))}
     </View>
   );
@@ -20,4 +14,10 @@ const StoreProducts = ({ products }) => {
 
 export default StoreProducts;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  products: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+});

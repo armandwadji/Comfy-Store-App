@@ -8,14 +8,16 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
-import { COLORS, URLProducts, windowHeight } from "../../constants/theme";
+import { COLORS, URLProducts } from "../../constants/theme";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
 import Header from "../../components/storeComponents/header/Header";
 import UseProducts from "../../hooks/products/UseProducts";
 import axios from "axios";
 
+import { useIsFocused } from "@react-navigation/native";
+
 const StoreScreen = () => {
-  const [translate, setTranslate] = useState(windowHeight);
+  const [translate, setTranslate] = useState(false);
   const [productsFilter, setProductsFilter] = useState(null);
 
   const getTranslate = (value) => {
@@ -23,6 +25,8 @@ const StoreScreen = () => {
   };
 
   const products = UseProducts();
+
+  const isFocused = useIsFocused();
 
   const fetchProducts = async () => {
     const res = await axios.get(URLProducts);

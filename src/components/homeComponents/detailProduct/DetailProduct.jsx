@@ -9,17 +9,16 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import UseProduct from "../../../hooks/product/UseProduct";
-import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
+import { COLORS } from "../../../constants/theme";
 import styles from "./DetailProductStyle";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Color from "../colorComponent/Color";
-import * as Animatable from "react-native-animatable";
 import { formatPrice, truncateText } from "../../../utils/Utils";
 import AddPanier from "../../addpanier/AddPanier";
 
 const DetailProduct = ({ route, navigation }) => {
-  const { id, like } = route.params;
+  const { id, like, name, price, image } = route.params;
 
   const [loading, setLoading] = useState(true);
 
@@ -30,9 +29,11 @@ const DetailProduct = ({ route, navigation }) => {
     setDesclength(!descLength);
   };
 
+  //Pour aller chercher le détail du produit
   const product = UseProduct(id);
 
-  //   const { price, name, image, company } = product?.fields;
+  //Pour ajouter dans le panier en cas de click de l'utilisateur
+  const panier = { id, name, price, image };
 
   useEffect(() => {
     product && setLoading(false);
@@ -127,7 +128,7 @@ const DetailProduct = ({ route, navigation }) => {
           </View>
 
           {/* AddPanier */}
-          <AddPanier navigation={navigation} />
+          <AddPanier panier={panier} />
         </>
       )}
     </View>
