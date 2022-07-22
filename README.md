@@ -15,6 +15,10 @@
 </div> 
 
 
+<div align="center" >
+<img width="400" alt="comfy store storeScreen articles" src="https://user-images.githubusercontent.com/90448006/180574686-1360f151-2f75-4aa0-a6dc-5527f10514c3.png">
+  <img width="400" alt="comfy store storeScreen filter" src="https://user-images.githubusercontent.com/90448006/180574768-acb31308-4656-4aaf-8200-d33f51cda6c7.png">
+</div> 
 
 
 ## Description
