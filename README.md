@@ -28,4 +28,43 @@
 ## Description
 Application de vente de meubles et décorations d'intérieurs. Gestion du store et du panier de l'utilisateur.
 
+## Configuration requise
+
+- [git][git]
+- [NodeJS][node]
+- [npm][npm]
+- [Android Studio][androidstudio]
+
+## Installation
+Après avoir installé les configurations du projet, vous pouvez executer cette commande pour installer le projet en local sur votre machine :
+
+```
+git clone https://github.com/armandwadji/Comfy-Store-App.git
+```
+Ensuite il faudra installer les dépendances du projet avec la commande suivante :
+
+```
+npm install
+```
+
+## Démarrer l'application
+Une fois les dependances correctement installer, lancer enfin le projet grâce a commande suivante :
+
+```
+npm start
+```
+
+Enfin choisir l'émulateur que vous voulez (i pour IOS) (a pour Androïd)
+
 <h1 align="center">Bon Code 🖥 💻 📱</h1>
+
+<!-- prettier-ignore-start -->
+[npm]: https://www.npmjs.com/
+[node]: https://nodejs.org
+[git]: https://git-scm.com/
+[androidstudio]: https://developer.android.com/studio
+[xcode]: https://developer.android.com/studio
+<!-- prettier-ignore-end -->
+
+
+
