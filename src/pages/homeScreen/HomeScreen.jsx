@@ -1,4 +1,4 @@
-import { Text, ScrollView, FlatList, Image, View } from "react-native";
+import { Text, ScrollView, FlatList, StatusBar } from "react-native";
 import React, { useState } from "react";
 
 import Search from "../../components/searchComponent/Search";
@@ -6,7 +6,8 @@ import Header from "../../components/homeComponents/header/Header";
 import Product from "../../components/productComponent/Product";
 import UseProducts from "../../hooks/products/UseProducts";
 import styles from "./HomeScreenStyle";
-import { COLORS } from "../../constants/theme";
+
+import { useIsFocused } from "@react-navigation/native";
 
 const HomeScreen = () => {
   //Méthode pour afficher la barre de recherche au scroll positif de l'utilisateur
@@ -19,11 +20,16 @@ const HomeScreen = () => {
   const products = UseProducts();
   const featured = products?.filter((product) => product.fields.featured);
 
+  const isFocused = useIsFocused();
+
   return (
     <>
       {/* Searchinput */}
       {/* <Search scroll={scroll} color={COLORS.white} /> */}
-
+      <StatusBar
+        barStyle={!isFocused ? "dark-content" : "light-content"}
+        animated={true}
+      />
       <ScrollView
         showsVerticalScrollIndicator={false}
         snapToEnd={true}
