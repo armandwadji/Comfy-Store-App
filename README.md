@@ -37,6 +37,10 @@ Application de vente de meubles et décorations d'intérieurs. Gestion du store 
 - [Android Studio][androidstudio]
 
 ## Installation
+Pour commencer de manière simple, vous devez installer expo CLI de manière global sur votre PC et e tant qu'administrateur
+```
+npm install -g expo-cli
+```
 Après avoir installé les configurations du projet, vous pouvez executer cette commande pour installer le projet en local sur votre machine :
 
 ```
