@@ -28,20 +28,16 @@ const BottomSheet = ({
 
   //On trouve le pris maximum des articles
   const prices = [...new Set(products?.map((item) => item.fields.price))];
-  const maxPrices = Math.max(...prices) / 10;
+  const maxPrices = Math.ceil(Math.max(...prices) / 10);
 
   // On initialise un tableau vide de produits filters
   let productsFilter = [...products];
 
-  const [price, setprice] = useState(parseInt(maxPrices) + 1);
+  const [price, setprice] = useState(maxPrices);
   const [categorie, setCategorie] = useState("all");
   const [search, setSearch] = useState("");
 
   const handleFilterCompany = (company, price, search) => {
-    // On change la couleur du boutton clicker
-
-    setprice(parseInt(price));
-
     // Filtre selon le prix
     productsFilter = products.filter(
       (product) => product.fields.price / 10 <= price
@@ -67,7 +63,7 @@ const BottomSheet = ({
     getProductFilter(productsFilter);
   };
 
-  // On exécute la fonction a chaque fois que l'un des trois paramètre de cette fonction est modifié
+  // On exécute la fonction a chaque fois que l'un des trois paramètres de cette fonction est modifié
   useEffect(() => {
     handleFilterCompany(categorie, price, search);
   }, [categorie, price, search]);
@@ -91,11 +87,7 @@ const BottomSheet = ({
         <View style={styles.line} />
 
         {/* SearchComponent */}
-        <Search
-          color={COLORS.teal}
-          setSearch={setSearch}
-          handleFilterCompany={handleFilterCompany}
-        />
+        <Search color={COLORS.teal} setSearch={setSearch} />
 
         {/* parameters */}
         <View
@@ -138,11 +130,11 @@ const BottomSheet = ({
             <Slider
               style={[styles.slider]}
               minimumValue={0}
-              maximumValue={parseInt(maxPrices) + 1}
+              maximumValue={maxPrices}
               thumbTintColor={COLORS.orange}
               minimumTrackTintColor={COLORS.orange}
               maximumTrackTintColor={COLORS.background}
-              value={maxPrices}
+              value={maxPrices / 2}
               onValueChange={(value) => setprice(parseInt(value))}
             />
           </>
