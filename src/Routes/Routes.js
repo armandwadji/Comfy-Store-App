@@ -20,13 +20,17 @@ const BottomTabScreen = () => {
   const { totalAmount } = useGlobalContext();
 
   return (
-    <>
+    <View
+      style={{
+        height: windowHeight,
+        position: "relative",
+      }}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
-            height: "10%",
+            height: 80,
           },
           tabBarIcon: ({ focused }) => {
             switch (route.name) {
@@ -129,7 +133,7 @@ const BottomTabScreen = () => {
           <Text style={{ color: COLORS.white }}>{totalAmount}</Text>
         </Animatable.View>
       }
-    </>
+    </View>
   );
 };
 
@@ -139,7 +143,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 2,
     backgroundColor: COLORS.orange,
-    top: windowHeight - 30,
+    top: windowHeight - 35,
     left: windowWidth / 3 / 2 - 20,
     zIndex: 100,
   },

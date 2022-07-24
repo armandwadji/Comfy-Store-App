@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     position: "absolute",
     borderRadius: 30,
-    top: windowHeight / 1.8,
+    top: windowHeight / 2,
   },
   line: {
     width: 85,
