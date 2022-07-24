@@ -22,8 +22,9 @@
 
 <div align="center" >
 <img width="400" alt="comfy store storeScreen detailArticle" src="https://user-images.githubusercontent.com/90448006/180574914-a6bfc48f-edc2-449a-acf2-a8941c5c6912.png">
-  <img width="400" alt="comfy store storeScreen panier" src="https://user-images.githubusercontent.com/90448006/180575017-8574ac62-41a9-478b-b73d-cc7223da8777.png">
+  <img width="400" alt="comfy store storeScreen panier" src="https://user-images.githubusercontent.com/90448006/180666026-b37c9d70-bc2d-4497-8197-4cde30b9f88b.png">
 </div> 
+
 
 ## Description
 Application de vente de meubles et décorations d'intérieurs. Gestion du store et du panier de l'utilisateur.
