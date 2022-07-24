@@ -5,16 +5,21 @@ import {
   StyleSheet,
   ActivityIndicator,
   Text,
+  Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
-import { COLORS, URLProducts } from "../../constants/theme";
+import {
+  COLORS,
+  URLProducts,
+  windowHeight,
+  windowWidth,
+} from "../../constants/theme";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
 import Header from "../../components/storeComponents/header/Header";
 import UseProducts from "../../hooks/products/UseProducts";
 import axios from "axios";
-
-import { useIsFocused } from "@react-navigation/native";
+import EmptySearch from "../../components/storeComponents/emptySearch/EmptySearch";
 
 const StoreScreen = () => {
   const [translate, setTranslate] = useState(false);
@@ -25,8 +30,6 @@ const StoreScreen = () => {
   };
 
   const products = UseProducts();
-
-  const isFocused = useIsFocused();
 
   const fetchProducts = async () => {
     const res = await axios.get(URLProducts);
@@ -55,10 +58,7 @@ const StoreScreen = () => {
             productsFilter.length > 0 ? (
               <StoreProducts products={productsFilter} />
             ) : (
-              <Text
-                style={[{ fontSize: 25, textAlign: "center", marginTop: 10 }]}>
-                Aucun produit disponible
-              </Text>
+              <EmptySearch />
             )
           ) : (
             <ActivityIndicator size={30} color={COLORS.orange} />
@@ -80,32 +80,3 @@ const StoreScreen = () => {
 };
 
 export default StoreScreen;
-
-const styles = StyleSheet.create({
-  header: {
-    // backgroundColor: "red",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 15,
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: "bold",
-    color: COLORS.orange,
-  },
-  productsCounts: {
-    fontSize: 10,
-    opacity: 0.6,
-    marginTop: 5,
-  },
-
-  right: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  filter: {
-    textTransform: "capitalize",
-    marginRight: 15,
-  },
-});

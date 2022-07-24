@@ -30,7 +30,7 @@ const Product = ({ article, index }) => {
           id,
           name,
           price,
-          image: image[0].url,
+          image: image.at(0).url,
           like,
         })
       }>
@@ -40,7 +40,7 @@ const Product = ({ article, index }) => {
         <View style={[styles.imgContainer, { transform: [{ scale: 1 }] }]}>
           <Image
             source={{
-              uri: image[0].url,
+              uri: image.at(0).url,
             }}
             resizeMode={"cover"}
             style={[styles.img]}

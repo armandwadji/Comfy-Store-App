@@ -3,12 +3,6 @@ import { COLORS, windowWidth } from "../../constants/theme";
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "red",
-    // display: "flex",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // flexDirection: "column",
-    // marginLeft: 5,
     paddingHorizontal: 5,
     marginBottom: 10,
     width: windowWidth / 2,
@@ -40,11 +34,13 @@ const styles = StyleSheet.create({
   },
   name: {
     textTransform: "capitalize",
+    color: COLORS.teal,
     fontSize: 10,
     marginVertical: 5,
   },
   price: {
     fontSize: 15,
+    color: COLORS.teal,
     fontWeight: "bold",
   },
 });

@@ -1,15 +1,10 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
+import { COLORS } from "../../../constants/theme";
 import Search from "../../searchComponent/Search";
 import Slider from "@react-native-community/slider";
 import * as Animatable from "react-native-animatable";
+import styles from "./BottomSheetStyle";
 
 const BottomSheet = ({
   translate,
@@ -91,13 +86,13 @@ const BottomSheet = ({
               display: "none",
             },
       ]}>
-      <ScrollView
-        onScroll={(e) => handleScroll(e)}
-        scrollEventThrottle={500}
-        style={{}}>
+      <ScrollView onScroll={(e) => handleScroll(e)} scrollEventThrottle={500}>
+        {/* Top line */}
         <View style={styles.line} />
+
+        {/* SearchComponent */}
         <Search
-          color={COLORS.black}
+          color={COLORS.teal}
           setSearch={setSearch}
           handleFilterCompany={handleFilterCompany}
         />
@@ -105,41 +100,18 @@ const BottomSheet = ({
         {/* parameters */}
         <View
           style={{
-            marginTop: "25%",
-            display: "flex",
+            marginTop: "20%",
           }}>
           {/* Companies */}
           <>
-            <Text
-              style={{
-                marginBottom: 15,
-                marginLeft: 15,
-                fontSize: 20,
-                fontWeight: "bold",
-                textTransform: "capitalize",
-                color: COLORS.orange,
-              }}>
-              companies
-            </Text>
-            <View
-              style={{
-                flexWrap: "wrap",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                marginHorizontal: 10,
-              }}>
+            <Text style={[styles.companiesTitle]}>companies</Text>
+            <View style={[styles.companiesContainer]}>
               {companies.map((company) => (
                 <TouchableOpacity
                   key={company}
                   onPress={() => setCategorie(company)}
                   style={[
-                    {
-                      marginHorizontal: 10,
-                      padding: 6,
-                      borderWidth: 1,
-                      borderRadius: 10,
-                      fontSize: 15,
-                    },
+                    styles.companyBorder,
                     categorie === company && {
                       backgroundColor: COLORS.orange,
                       borderColor: COLORS.white,
@@ -147,8 +119,8 @@ const BottomSheet = ({
                   ]}>
                   <Text
                     style={[
+                      styles.company,
                       categorie === company && { color: COLORS.white },
-                      { textTransform: "capitalize" },
                     ]}>
                     {company}
                   </Text>
@@ -159,24 +131,12 @@ const BottomSheet = ({
 
           {/* Price */}
           <>
-            <Text
-              style={{
-                marginTop: 15,
-                marginBottom: 20,
-                marginLeft: 15,
-                fontSize: 20,
-                fontWeight: "bold",
-                textTransform: "capitalize",
-                color: COLORS.orange,
-              }}>
+            <Text style={[styles.pricetitle]}>
               Price : {price && price !== 0 && price}
               {" $"}
             </Text>
             <Slider
-              style={{
-                width: windowWidth - 20,
-                height: 20,
-              }}
+              style={[styles.slider]}
               minimumValue={0}
               maximumValue={parseInt(maxPrices) + 1}
               thumbTintColor={COLORS.orange}
@@ -193,22 +153,3 @@ const BottomSheet = ({
 };
 
 export default BottomSheet;
-
-const styles = StyleSheet.create({
-  bottomSheetContainer: {
-    height: windowHeight,
-    width: "100%",
-    backgroundColor: COLORS.white,
-    position: "absolute",
-    borderRadius: 30,
-    top: windowHeight / 2,
-  },
-  line: {
-    width: 85,
-    height: 4,
-    backgroundColor: COLORS.orange,
-    alignSelf: "center",
-    marginVertical: 15,
-    borderRadius: 2,
-  },
-});

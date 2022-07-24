@@ -24,8 +24,6 @@ const HomeScreen = () => {
 
   return (
     <>
-      {/* Searchinput */}
-      {/* <Search scroll={scroll} color={COLORS.white} /> */}
       <StatusBar
         barStyle={!isFocused ? "dark-content" : "light-content"}
         animated={true}
