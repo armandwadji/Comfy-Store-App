@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { View, Text, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import HeaderBasket from "../../components/basketComponents/headerBasket/HeaderBasket";
 import { COLORS, windowHeight, windowWidth } from "../../constants/theme";
@@ -16,6 +9,7 @@ import * as Animatable from "react-native-animatable";
 
 import { formatPrice } from "../../utils/Utils";
 import { useIsFocused } from "@react-navigation/native";
+import styles from "./BasketScreenStyle";
 
 const BasketScreen = () => {
   const { totalPrice, totalAmount } = useGlobalContext();
@@ -38,13 +32,12 @@ const BasketScreen = () => {
           <HeaderBasket />
           {totalAmount === 0 ? (
             <View
-              style={{
-                // backgroundColor: "red",
-                height: windowHeight - insets.top * 4,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}>
+              style={[
+                styles.emptyContainer,
+                {
+                  height: windowHeight - insets.top * 4,
+                },
+              ]}>
               <Animatable.Image
                 animation={isFocused ? "fadeInDown" : "fadeInUp"}
                 easing={"ease-in-out"}
@@ -106,95 +99,3 @@ const BasketScreen = () => {
 };
 
 export default BasketScreen;
-
-const styles = StyleSheet.create({
-  emptyBasket: {
-    marginVertical: 15,
-    fontSize: 20,
-    textAlign: "center",
-  },
-  totalContainer: {
-    // backgroundColor: "red",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  line: {
-    backgroundColor: COLORS.background,
-    height: 1.5,
-    width: windowWidth / 1.05,
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginVertical: 10,
-  },
-  left: {
-    // backgroundColor: "green",
-    flex: 1,
-    paddingLeft: 5,
-  },
-  rigth: {
-    // backgroundColor: "yellow",
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    paddingRight: 10,
-  },
-  price: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 5,
-  },
-  livraison: {
-    fontSize: 12,
-    opacity: 0.6,
-    marginBottom: 10,
-  },
-  paiement: {
-    fontSize: 12,
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  treeTimesContainer: {
-    borderWidth: 1,
-    borderRadius: "200",
-    backgroundColor: COLORS.black,
-    color: COLORS.white,
-    // marginHorizontal: 5,
-    padding: 3,
-  },
-  treeTimes: {
-    color: COLORS.white,
-    fontSize: 12,
-    fontWeight: "bold",
-  },
-
-  amount: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 10,
-    borderWidth: 1,
-    borderColor: COLORS.background,
-    width: 100,
-    marginVertical: 5,
-  },
-  deleteContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    marginVertical: 10,
-    paddingRight: 15,
-  },
-  delete: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  deleteText: {
-    marginLeft: 10,
-    opacity: 0.6,
-  },
-});
