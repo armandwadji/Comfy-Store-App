@@ -1,7 +1,7 @@
-import { View, Text, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { View, Text, SafeAreaView, ScrollView } from "react-native";
 import React from "react";
 import HeaderBasket from "../../components/basketComponents/headerBasket/HeaderBasket";
-import { COLORS, windowHeight, windowWidth } from "../../constants/theme";
+import { COLORS, windowHeight } from "../../constants/theme";
 import Articles from "../../components/basketComponents/articles/Articles";
 import { useGlobalContext } from "../../context/Context";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

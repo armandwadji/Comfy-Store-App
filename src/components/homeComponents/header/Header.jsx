@@ -1,12 +1,5 @@
-import {
-  View,
-  Text,
-  ImageBackground,
-  TouchableOpacity,
-  ActivityIndicator,
-  Image,
-} from "react-native";
-import React, { useRef } from "react";
+import { View, Text, ActivityIndicator, Image } from "react-native";
+import React from "react";
 import styles from "./HeaderStyle";
 import {
   KaushanScript_400Regular,
@@ -15,7 +8,7 @@ import {
 
 import { Video } from "expo-av";
 import { useIsFocused } from "@react-navigation/native";
-import { windowHeight, windowWidth } from "../../../constants/theme";
+import { windowWidth } from "../../../constants/theme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Header = () => {
@@ -35,21 +28,6 @@ const Header = () => {
 
   return (
     <View style={styles.container}>
-      {/* <ImageBackground
-        source={require("../../../../assets/img/main-bcg.jpeg")}
-        resizeMode='cover'
-        borderBottomLeftRadius={30}
-        borderBottomRightRadius={30}
-        style={styles.imgBackground}>
-        <View style={styles.infoContainer}>
-          <Text style={[styles.text, { fontFamily: "title" }]}>
-            rest, relax, unwind
-          </Text>
-          <TouchableOpacity style={styles.btnContainer}>
-            <Text style={styles.btn}>shop now</Text>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground> */}
       <Video
         source={require("../../../../assets/video/videoHeader.mp4")}
         resizeMode='cover'

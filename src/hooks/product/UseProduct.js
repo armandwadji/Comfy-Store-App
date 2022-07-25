@@ -6,15 +6,19 @@ const UseProduct = (id) => {
   const [product, setProduct] = useState(null);
 
   const fetchProducts = async () => {
-    const res = await axios.get(`${URLSingleProduct}${id}`);
-    const data = await res.data;
-    setProduct(data);
+    try {
+      const res = await axios.get(`${URLSingleProduct}${id}`);
+      const data = await res.data;
+      setProduct(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
-  if (product) return product;
+  return product;
 };
 
 export default UseProduct;

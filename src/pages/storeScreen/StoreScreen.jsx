@@ -2,19 +2,11 @@ import {
   View,
   ScrollView,
   SafeAreaView,
-  StyleSheet,
   ActivityIndicator,
-  Text,
-  Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
-import {
-  COLORS,
-  URLProducts,
-  windowHeight,
-  windowWidth,
-} from "../../constants/theme";
+import { COLORS, URLProducts } from "../../constants/theme";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
 import Header from "../../components/storeComponents/header/Header";
 import UseProducts from "../../hooks/products/UseProducts";
@@ -32,9 +24,13 @@ const StoreScreen = () => {
   const products = UseProducts();
 
   const fetchProducts = async () => {
-    const res = await axios.get(URLProducts);
-    const data = await res.data;
-    setProductsFilter(data);
+    try {
+      const res = await axios.get(URLProducts);
+      const data = await res.data;
+      setProductsFilter(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

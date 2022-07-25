@@ -1,6 +1,5 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import React from "react";
-import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
 import styles from "./EmptySearchStyle";
 
 const EmptySearch = () => {
