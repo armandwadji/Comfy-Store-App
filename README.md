@@ -61,6 +61,12 @@ npm start
 
 Enfin choisir l'émulateur que vous voulez (i pour IOS) (a pour Androïd)
 
+<p align="right">Back to top : 
+  <a href="#top">
+    ☝
+  </a>
+</p>
+
 <h1 align="center">Bon Code 🖥 💻 📱</h1>
 
 <!-- prettier-ignore-start -->
