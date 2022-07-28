@@ -61,9 +61,8 @@ npm start
 
 Enfin choisir l'émulateur que vous voulez (i pour IOS) (a pour Androïd)
 
-<p align="right">
+<p align="right">Back to top :
   <a href="#top">
-    Back to top :
     ☝
   </a>
 </p>
