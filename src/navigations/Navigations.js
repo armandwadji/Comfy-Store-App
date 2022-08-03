@@ -20,9 +20,9 @@ const Navigation = () => {
         screenOptions={() => ({
           presentation: "modal",
           cardStyle: {
-            transform: [{ translateY: windowHeight / 6 }],
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
+            transform: [{ translateY: windowHeight / 8 }],
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
           },
         })}>
         <Stack.Screen name='expedition' component={Expedition} />
