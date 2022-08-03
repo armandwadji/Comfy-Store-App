@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
     display: "flex",
     alignItems: "center",
+    // marginTop: 50,
   },
   img: {
     height: windowHeight / 3,
