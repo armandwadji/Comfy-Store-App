@@ -3,7 +3,7 @@ import { COLORS, windowWidth } from "../../constants/theme";
 
 const styles = StyleSheet.create({
   addButtonContainer: {
-    position: "absolute",
+    position: "fixed",
     bottom: 80,
     padding: 10,
     width: windowWidth - 40,
