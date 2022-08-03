@@ -46,7 +46,9 @@ const DetailProduct = ({ route, navigation }) => {
         <ActivityIndicator size={30} color={COLORS.orange} />
       ) : (
         <>
-          <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{ marginBottom: 50 }}>
             {/* BackNavigate */}
             <TouchableOpacity
               onPress={() => navigation.goBack()}

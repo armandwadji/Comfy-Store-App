@@ -17,14 +17,14 @@ const Navigation = () => {
         <Stack.Screen name='detail' component={DetailProduct} />
       </Stack.Group>
       <Stack.Group
-        screenOptions={() => ({
+        screenOptions={{
           presentation: "modal",
           cardStyle: {
             transform: [{ translateY: windowHeight / 8 }],
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
           },
-        })}>
+        }}>
         <Stack.Screen name='expedition' component={Expedition} />
         <Stack.Screen name='livraison' component={Livraison} />
         <Stack.Screen name='goback' component={GoBack} />
