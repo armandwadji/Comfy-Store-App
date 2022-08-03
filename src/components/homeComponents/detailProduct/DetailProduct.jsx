@@ -5,12 +5,11 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  StyleSheet,
   ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import UseProduct from "../../../hooks/product/UseProduct";
-import { COLORS, windowWidth } from "../../../constants/theme";
+import { COLORS } from "../../../constants/theme";
 import styles from "./DetailProductStyle";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";

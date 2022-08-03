@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+    marginBottom: 10,
   },
   line: {
     backgroundColor: COLORS.background,
@@ -92,6 +93,64 @@ const styles = StyleSheet.create({
   deleteText: {
     marginLeft: 10,
     opacity: 0.6,
+  },
+  reductionCodeContainer: {
+    flexDirection: "row",
+    marginVertical: 10,
+  },
+  reductionCode: {
+    marginHorizontal: 10,
+    fontWeight: "300",
+    alignItems: "center",
+  },
+  addCode: {
+    fontWeight: "300",
+    textDecorationLine: "underline",
+  },
+  applicationContainer: {
+    flexDirection: "row",
+    marginVertical: 10,
+    marginHorizontal: 5,
+  },
+  textInput: {
+    flex: 3,
+    borderWidth: 1,
+    padding: 10,
+    fontSize: 15,
+    borderColor: COLORS.background,
+    marginRight: 10,
+  },
+  btn: {
+    flex: 2,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  LivraisonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 10,
+  },
+  livraisonLeft: {
+    flex: 3.5,
+    marginHorizontal: 10,
+  },
+  ligne: {
+    flexDirection: "row",
+  },
+  icon: {
+    flex: 1,
+  },
+  text: {
+    flex: 8,
+    fontWeight: "300",
+  },
+  livraisonRight: {
+    flex: 0.5,
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginRight: 10,
   },
 });
 

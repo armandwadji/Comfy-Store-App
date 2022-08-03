@@ -1,5 +1,12 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
+import React, { useState } from "react";
 import HeaderBasket from "../../components/basketComponents/headerBasket/HeaderBasket";
 import { COLORS, windowHeight } from "../../constants/theme";
 import Articles from "../../components/basketComponents/articles/Articles";
@@ -11,6 +18,9 @@ import { formatPrice } from "../../utils/Utils";
 import { useIsFocused } from "@react-navigation/native";
 import styles from "./BasketScreenStyle";
 
+// Icons
+import Feather from "react-native-vector-icons/Feather";
+
 const BasketScreen = () => {
   const { totalPrice, totalAmount } = useGlobalContext();
 
@@ -19,6 +29,9 @@ const BasketScreen = () => {
 
   //Vavriable pour savoir si nous somme sur la fenetre en question
   const isFocused = useIsFocused();
+
+  // Code de reduction
+  const [reduction, setReduction] = useState(false);
 
   return (
     <SafeAreaView>
@@ -60,6 +73,8 @@ const BasketScreen = () => {
                 animation={isFocused ? "slideInRight" : "slideOutRight"}
                 duration={0}>
                 <Text style={[styles.line]}></Text>
+
+                {/* Total Amount & price */}
                 <View style={[styles.totalContainer]}>
                   <View style={[styles.left]}>
                     <Text>Sous-total ({totalAmount} Articles)</Text>
@@ -88,6 +103,73 @@ const BasketScreen = () => {
                       </View>
                     </View>
                   </View>
+                </View>
+
+                {/* Reduction Code */}
+                <Text style={[styles.line]}></Text>
+
+                {!reduction ? (
+                  <>
+                    {/* addCode */}
+                    <View style={[styles.reductionCodeContainer]}>
+                      <Text style={[styles.reductionCode]}>
+                        Code de réduction ou chèque-cadeau ?
+                      </Text>
+                      <TouchableOpacity onPress={() => setReduction(true)}>
+                        <Text style={[styles.addCode]}>Ajoutez-les ici</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </>
+                ) : (
+                  <>
+                    {/* Appliquer */}
+                    <View style={[styles.applicationContainer]}>
+                      <TextInput
+                        placeholder='ex. MX120CFS'
+                        keyboardType='ascii-capable'
+                        style={[styles.textInput]}></TextInput>
+                      <TouchableOpacity style={[styles.btn]}>
+                        <Text>APPLIQUER</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </>
+                )}
+
+                {/* Livraison */}
+                <Text style={[styles.line]}></Text>
+                {/* LivraisonContainer */}
+                <View style={[styles.LivraisonContainer]}>
+                  {/* Left */}
+                  <View style={[styles.livraisonLeft]}>
+                    {/* Ligne1 */}
+                    <View style={[styles.ligne]}>
+                      <Feather name='truck' size={20} style={[styles.icon]} />
+
+                      <Text style={[styles.text]}>
+                        Livraison à domicile disponible
+                      </Text>
+                    </View>
+
+                    {/* Ligne 2 */}
+                    <View
+                      style={[
+                        styles.ligne,
+                        {
+                          marginTop: 5,
+                        },
+                      ]}>
+                      <Feather name='box' size={20} style={[styles.icon]} />
+
+                      <Text style={[styles.text]}>
+                        Point de retrait non disponible (disponible pour les
+                        commandes uniquement composées d'articles de petite
+                        taille)
+                      </Text>
+                    </View>
+                  </View>
+
+                  {/* right */}
+                  <Text style={[styles.livraisonRight]}>70 €</Text>
                 </View>
               </Animatable.View>
             </>
