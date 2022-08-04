@@ -3,12 +3,12 @@ import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
 
 const styles = StyleSheet.create({
   bottomSheetContainer: {
-    height: windowHeight,
-    width: "100%",
-    backgroundColor: COLORS.white,
-    position: "absolute",
-    borderRadius: 30,
-    top: windowHeight / 2,
+    // height: windowHeight / 2,
+    // width: "100%",
+    // backgroundColor: COLORS.white,
+    // position: "absolute",
+    // borderRadius: 30,
+    // top: windowHeight / 2,
   },
   line: {
     width: 85,
@@ -54,7 +54,10 @@ const styles = StyleSheet.create({
     color: COLORS.orange,
   },
   slider: {
-    width: windowWidth - 20,
+    width: windowWidth - 40,
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: 50,
     height: 20,
   },
 });

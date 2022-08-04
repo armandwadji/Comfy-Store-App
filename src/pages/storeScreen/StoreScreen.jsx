@@ -3,23 +3,21 @@ import {
   ScrollView,
   SafeAreaView,
   ActivityIndicator,
+  Text,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
-import { COLORS, URLProducts } from "../../constants/theme";
+import { COLORS, URLProducts, windowHeight } from "../../constants/theme";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
 import Header from "../../components/storeComponents/header/Header";
 import UseProducts from "../../hooks/products/UseProducts";
 import axios from "axios";
 import EmptySearch from "../../components/storeComponents/emptySearch/EmptySearch";
 
-const StoreScreen = () => {
-  const [translate, setTranslate] = useState(false);
-  const [productsFilter, setProductsFilter] = useState(null);
+import { Modalize } from "react-native-modalize";
 
-  const getTranslate = (value) => {
-    setTranslate(value);
-  };
+const StoreScreen = () => {
+  const [productsFilter, setProductsFilter] = useState(null);
 
   const products = UseProducts();
 
@@ -37,6 +35,12 @@ const StoreScreen = () => {
     fetchProducts();
   }, []);
 
+  const modalizeRef = useRef(null);
+
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
+
   return (
     <SafeAreaView>
       <View
@@ -47,7 +51,7 @@ const StoreScreen = () => {
           stickyHeaderIndices={[0]}
           showsVerticalScrollIndicator={false}>
           {/* Header */}
-          <Header getTranslate={getTranslate} productsFilter={productsFilter} />
+          <Header productsFilter={productsFilter} onOpen={onOpen} />
 
           {/* Products */}
           {productsFilter ? (
@@ -63,14 +67,12 @@ const StoreScreen = () => {
       </View>
 
       {/* BottomFilter */}
-      {products && (
-        <BottomSheet
-          translate={translate}
-          getTranslate={getTranslate}
-          products={products}
-          getProductFilter={setProductsFilter}
-        />
-      )}
+      <Modalize
+        ref={modalizeRef}
+        modalHeight={windowHeight / 1.3}
+        snapPoint={windowHeight / 1.1}>
+        <BottomSheet products={products} getProductFilter={setProductsFilter} />
+      </Modalize>
     </SafeAreaView>
   );
 };
