@@ -13,10 +13,14 @@ import { useRef } from "react";
 import { COLORS, windowHeight, windowWidth } from "../constants/theme";
 import { useGlobalContext } from "../context/Context";
 
-const BottomTabScreen = () => {
+const BottomTabScreen = ({ route }) => {
+  // Variable qui va nous diriger vers le screen correspondant
+  const ecran = route.params;
+
   const Tab = createBottomTabNavigator();
   const offSetAnimation = useRef(new Animated.Value(0)).current;
 
+  // varaible pour le nombre total d'articles à afficher
   const { totalAmount } = useGlobalContext();
 
   return (
@@ -75,6 +79,9 @@ const BottomTabScreen = () => {
 
               default:
             }
+
+            // Redirection direct vers le panier
+            ecran && (route.name = ecran.screen);
           },
         })}>
         <Tab.Screen

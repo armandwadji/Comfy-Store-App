@@ -104,7 +104,9 @@ const GoToBasket = ({ article }) => {
       {/* Btn */}
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("bottom");
+          navigation.navigate("bottom", {
+            screen: "Basket",
+          });
         }}
         style={[
           styles.btn,
