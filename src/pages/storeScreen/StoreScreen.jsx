@@ -3,7 +3,6 @@ import {
   ScrollView,
   SafeAreaView,
   ActivityIndicator,
-  Text,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
@@ -42,29 +41,31 @@ const StoreScreen = () => {
   };
 
   return (
-    <SafeAreaView>
-      <View
-        style={{
-          marginTop: 10,
-        }}>
-        <ScrollView
-          stickyHeaderIndices={[0]}
-          showsVerticalScrollIndicator={false}>
-          {/* Header */}
-          <Header productsFilter={productsFilter} onOpen={onOpen} />
+    <>
+      <SafeAreaView>
+        <View
+          style={{
+            marginTop: 10,
+          }}>
+          <ScrollView
+            stickyHeaderIndices={[0]}
+            showsVerticalScrollIndicator={false}>
+            {/* Header */}
+            <Header productsFilter={productsFilter} onOpen={onOpen} />
 
-          {/* Products */}
-          {productsFilter ? (
-            productsFilter.length > 0 ? (
-              <StoreProducts products={productsFilter} />
+            {/* Products */}
+            {productsFilter ? (
+              productsFilter.length > 0 ? (
+                <StoreProducts products={productsFilter} />
+              ) : (
+                <EmptySearch />
+              )
             ) : (
-              <EmptySearch />
-            )
-          ) : (
-            <ActivityIndicator size={30} color={COLORS.orange} />
-          )}
-        </ScrollView>
-      </View>
+              <ActivityIndicator size={30} color={COLORS.orange} />
+            )}
+          </ScrollView>
+        </View>
+      </SafeAreaView>
 
       {/* BottomFilter */}
       <Modalize
@@ -73,7 +74,7 @@ const StoreScreen = () => {
         snapPoint={windowHeight / 1.1}>
         <BottomSheet products={products} getProductFilter={setProductsFilter} />
       </Modalize>
-    </SafeAreaView>
+    </>
   );
 };
 

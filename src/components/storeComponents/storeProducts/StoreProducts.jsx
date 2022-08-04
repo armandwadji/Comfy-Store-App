@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import Product from "../../productComponent/Product";
-import { windowHeight } from "../../../constants/theme";
 
 const StoreProducts = ({ products }) => {
   return (
@@ -20,6 +19,5 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    height: windowHeight,
   },
 });
