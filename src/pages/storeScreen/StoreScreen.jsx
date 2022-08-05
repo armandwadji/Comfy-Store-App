@@ -4,22 +4,19 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
-import { COLORS, URLProducts } from "../../constants/theme";
+import { COLORS, URLProducts, windowHeight } from "../../constants/theme";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
 import Header from "../../components/storeComponents/header/Header";
 import UseProducts from "../../hooks/products/UseProducts";
 import axios from "axios";
 import EmptySearch from "../../components/storeComponents/emptySearch/EmptySearch";
 
-const StoreScreen = () => {
-  const [translate, setTranslate] = useState(false);
-  const [productsFilter, setProductsFilter] = useState(null);
+import { Modalize } from "react-native-modalize";
 
-  const getTranslate = (value) => {
-    setTranslate(value);
-  };
+const StoreScreen = () => {
+  const [productsFilter, setProductsFilter] = useState(null);
 
   const products = UseProducts();
 
@@ -37,41 +34,47 @@ const StoreScreen = () => {
     fetchProducts();
   }, []);
 
-  return (
-    <SafeAreaView>
-      <View
-        style={{
-          marginTop: 10,
-        }}>
-        <ScrollView
-          stickyHeaderIndices={[0]}
-          showsVerticalScrollIndicator={false}>
-          {/* Header */}
-          <Header getTranslate={getTranslate} productsFilter={productsFilter} />
+  const modalizeRef = useRef(null);
 
-          {/* Products */}
-          {productsFilter ? (
-            productsFilter.length > 0 ? (
-              <StoreProducts products={productsFilter} />
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
+
+  return (
+    <>
+      <SafeAreaView>
+        <View
+          style={{
+            marginTop: 10,
+          }}>
+          <ScrollView
+            stickyHeaderIndices={[0]}
+            showsVerticalScrollIndicator={false}>
+            {/* Header */}
+            <Header productsFilter={productsFilter} onOpen={onOpen} />
+
+            {/* Products */}
+            {productsFilter ? (
+              productsFilter.length > 0 ? (
+                <StoreProducts products={productsFilter} />
+              ) : (
+                <EmptySearch />
+              )
             ) : (
-              <EmptySearch />
-            )
-          ) : (
-            <ActivityIndicator size={30} color={COLORS.orange} />
-          )}
-        </ScrollView>
-      </View>
+              <ActivityIndicator size={30} color={COLORS.orange} />
+            )}
+          </ScrollView>
+        </View>
+      </SafeAreaView>
 
       {/* BottomFilter */}
-      {products && (
-        <BottomSheet
-          translate={translate}
-          getTranslate={getTranslate}
-          products={products}
-          getProductFilter={setProductsFilter}
-        />
-      )}
-    </SafeAreaView>
+      <Modalize
+        ref={modalizeRef}
+        modalHeight={windowHeight / 1.3}
+        snapPoint={windowHeight / 1.1}>
+        <BottomSheet products={products} getProductFilter={setProductsFilter} />
+      </Modalize>
+    </>
   );
 };
 

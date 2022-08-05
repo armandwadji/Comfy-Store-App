@@ -142,7 +142,7 @@ const DetailProduct = ({ route, navigation }) => {
 
               {/* Livraisons */}
               <SavInfo
-                title={"Livraions"}
+                title={"Livraisons"}
                 text={"Livraison Standard 70 €"}
                 goTo={"livraison"}
               />

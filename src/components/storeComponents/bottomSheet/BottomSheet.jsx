@@ -3,23 +3,9 @@ import React, { useEffect, useState } from "react";
 import { COLORS } from "../../../constants/theme";
 import Search from "../../searchComponent/Search";
 import Slider from "@react-native-community/slider";
-import * as Animatable from "react-native-animatable";
 import styles from "./BottomSheetStyle";
 
-const BottomSheet = ({
-  translate,
-  getTranslate,
-  products,
-  getProductFilter,
-}) => {
-  // Le scroll vers le bas ferme la fenetre de filtre
-  const handleScroll = (e) => {
-    if (e.nativeEvent.contentOffset.y < -5) {
-      // console.log(e.nativeEvent.contentOffset.y);
-      getTranslate(false);
-    }
-  };
-
+const BottomSheet = ({ products, getProductFilter }) => {
   //On stock toutes les catégories disponibles
   const companies = [
     "all",
@@ -69,20 +55,8 @@ const BottomSheet = ({
   }, [categorie, price, search]);
 
   return (
-    <Animatable.View
-      animation={translate ? "slideInUp" : "slideOutDown"}
-      easing='ease'
-      style={[
-        styles.bottomSheetContainer,
-        translate
-          ? {
-              display: "block",
-            }
-          : {
-              display: "none",
-            },
-      ]}>
-      <ScrollView onScroll={(e) => handleScroll(e)} scrollEventThrottle={500}>
+    <View easing='ease' style={[styles.bottomSheetContainer]}>
+      <ScrollView>
         {/* Top line */}
         <View style={styles.line} />
 
@@ -140,7 +114,7 @@ const BottomSheet = ({
           </>
         </View>
       </ScrollView>
-    </Animatable.View>
+    </View>
   );
 };
 
