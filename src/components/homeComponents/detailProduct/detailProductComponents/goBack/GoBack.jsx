@@ -50,7 +50,7 @@ const GoBack = () => {
             fontWeight: "300",
             marginBottom: 15,
           }}>
-          Vous devez nous faire part devotre décision de retourner votre
+          Vous devez nous faire part de votre décision de retourner votre
           commande dans un delais de 30 jours après sa réception.
         </Text>
         <Text
