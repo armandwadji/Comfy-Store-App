@@ -5,10 +5,14 @@ import { COLORS } from "../../constants/theme";
 import styles from "./SearchStyle";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
+import { useNavigation } from "@react-navigation/native";
 
-const Search = ({ scroll, color, setSearch }) => {
+const Search = ({ scroll, color, setSearch, meter, press }) => {
   //Variable déterminant la distance du top
   const insets = useSafeAreaInsets();
+
+  // Variable pour nous diriger vers le storeComponent apres le click
+  const navigation = useNavigation();
 
   //Variables pour l'appartion de la barre de scroll en fonction de la direction du scroll
   const [show, setShow] = useState(false);
@@ -37,15 +41,27 @@ const Search = ({ scroll, color, setSearch }) => {
       style={[
         styles.container,
         {
-          top: insets.top + 10,
+          top: insets.top + (meter ? meter : 0),
         },
       ]}>
       <TouchableOpacity>
         <TextInput
-          onChangeText={(text) => setSearch(text)}
+          onPressIn={() => {
+            press &&
+              navigation.navigate("bottom", {
+                screen: "Store",
+              });
+          }}
+          onChangeText={(text) => !press && setSearch(text)}
           placeholder='Recherche'
-          placeholderTextColor={COLORS.black}
-          style={[styles.textInput, { borderColor: color }]}
+          placeholderTextColor={color ? color : COLORS.white}
+          style={[
+            styles.textInput,
+            {
+              borderColor: color ? color : COLORS.white,
+              color: color ? color : COLORS.white,
+            },
+          ]}
         />
         <Feather
           name={"search"}
