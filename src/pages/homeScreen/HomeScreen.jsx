@@ -28,7 +28,7 @@ const HomeScreen = () => {
         barStyle={!isFocused ? "dark-content" : "light-content"}
         animated={true}
       />
-      <Search meter={70} scroll={scroll} press={true} />
+      <Search meter={65} scroll={scroll} press={true} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         snapToEnd={true}

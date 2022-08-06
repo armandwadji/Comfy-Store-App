@@ -135,6 +135,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginRight: 10,
   },
+  btnValidation: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+    backgroundColor: COLORS.black,
+    borderRadius: 2,
+  },
+  btnText: {
+    color: COLORS.white,
+    textAlign: "center",
+    textTransform: "uppercase",
+    padding: 8,
+  },
 });
 
 export default styles;
