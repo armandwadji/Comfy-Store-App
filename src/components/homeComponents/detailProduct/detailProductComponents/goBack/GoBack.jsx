@@ -1,10 +1,4 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import styles from "./GoBackStyle";
 
@@ -12,9 +6,9 @@ const GoBack = () => {
   return (
     <ScrollView style={[styles.goBackContainer]}>
       {/* GoBack */}
-      <Text style={[styles.title1]}>retours</Text>
+      <Text style={[styles.h1]}>retours</Text>
 
-      <Text style={[styles.title2]}>Information concernant les retours</Text>
+      <Text style={[styles.h2]}>Information concernant les retours</Text>
 
       {/* GoBack informations */}
       <View style={{ marginBottom: 20 }}>

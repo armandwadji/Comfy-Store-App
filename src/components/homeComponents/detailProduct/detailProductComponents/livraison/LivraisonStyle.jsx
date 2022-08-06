@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  goBackContainer: {
+  livraisonContainer: {
     marginHorizontal: 20,
     marginTop: 30,
   },

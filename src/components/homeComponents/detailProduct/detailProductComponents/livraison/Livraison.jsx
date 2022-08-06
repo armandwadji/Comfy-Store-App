@@ -1,88 +1,40 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import styles from "./LivraisonStyle";
 
 const Livraison = () => {
   return (
-    <ScrollView
-      style={{
-        // backgroundColor: "red",
-        marginHorizontal: 20,
-        marginTop: 30,
-      }}>
+    <ScrollView style={[styles.livraisonContainer]}>
       {/* Expedition */}
-      <Text
-        style={[
-          styles.title,
-          {
-            textTransform: "capitalize",
-            fontSize: 20,
-            fontWeight: "500",
-            marginBottom: 20,
-          },
-        ]}>
-        livraison
-      </Text>
+      <Text style={[styles.h1]}>livraison</Text>
 
-      <Text
-        style={[
-          styles.title2,
-          {
-            textTransform: "capitalize",
-            fontSize: 15,
-            fontWeight: "400",
-            letterSpacing: 1,
-            marginBottom: 20,
-          },
-        ]}>
-        livraison standard
-      </Text>
+      <Text style={[styles.h2]}>livraison standard</Text>
 
       {/* Expedition informations */}
       <View style={{ marginBottom: 20 }}>
-        <Text
-          style={{
-            fontWeight: "300",
-            marginBottom: 15,
-          }}>
+        <Text style={[styles.text]}>
           Livraison 6j/7, du lundi au samedi de 8h à 18h
         </Text>
-        <Text
-          style={{
-            marginBottom: 15,
-            fontWeight: "300",
-          }}>
+        <Text style={[styles.text]}>
           Devant le pas de votre maison/immeuble.
         </Text>
-        <Text
-          style={{
-            fontWeight: "300",
-            marginBottom: 15,
-          }}>
+        <Text style={[styles.text]}>
           Le jour de la livraison, le transporteur vous contactera par email et
           sms pour vous prevenir de leur arrivée.
         </Text>
-        <Text
-          style={{
-            fontWeight: "300",
-            marginBottom: 15,
-          }}>
+        <Text style={[styles.text]}>
           En cas d'abscence, un avis de passage sera laissé dans votre boite aux
           lettres et doublé par e-mail afin de vous permettre une
           reprogrammation de votre livraison.
         </Text>
         <TouchableOpacity>
           <Text
-            style={{
-              fontWeight: "300",
-              marginBottom: 15,
-              textDecorationLine: "underline",
-            }}>
+            style={[
+              styles.text,
+              {
+                textDecorationLine: "underline",
+              },
+            ]}>
             En savoir plus
           </Text>
         </TouchableOpacity>
@@ -92,5 +44,3 @@ const Livraison = () => {
 };
 
 export default Livraison;
-
-const styles = StyleSheet.create({});
