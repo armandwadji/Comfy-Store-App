@@ -1,6 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React, { useRef } from "react";
-import { COLORS, windowHeight, windowWidth } from "../../../../constants/theme";
+import { COLORS, windowHeight } from "../../../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -9,6 +9,7 @@ import { Modalize } from "react-native-modalize";
 import Expedition from "../../detailProduct/detailProductComponents/expedition/Expedition";
 import Livraison from "../detailProductComponents/livraison/Livraison";
 import GoBack from "../detailProductComponents/goBack/GoBack";
+import styles from "./SavInfoStyle";
 
 const SavInfo = ({ title, text, goTo }) => {
   const navigation = useNavigation();
@@ -20,23 +21,13 @@ const SavInfo = ({ title, text, goTo }) => {
   };
   return (
     <>
-      <View style={[styles.SAVContainer, { marginVertical: 5 }]}>
+      <View style={[styles.SAVContainer]}>
         <TouchableOpacity
           onPress={() => {
             onOpen();
             // navigation.navigate(goTo);
           }}>
-          <View
-            style={[
-              styles.SAVInfoDetail,
-              {
-                // backgroundColor: "red",
-                width: windowWidth,
-                flexDirection: "row",
-                justifyContent: "space-between",
-                paddingHorizontal: 10,
-              },
-            ]}>
+          <View style={[styles.SAVInfoDetails]}>
             <Text>{title}</Text>
             <MaterialIcons
               name='arrow-forward-ios'
@@ -46,29 +37,8 @@ const SavInfo = ({ title, text, goTo }) => {
             />
           </View>
         </TouchableOpacity>
-        <Text
-          style={[
-            styles.SAVInfo,
-            {
-              marginVertical: 5,
-              paddingHorizontal: 10,
-              opacity: 0.5,
-            },
-          ]}>
-          {text}
-        </Text>
-        <Text
-          style={[
-            styles.line,
-            {
-              backgroundColor: COLORS.background,
-              height: 1.5,
-              width: windowWidth / 1.05,
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginVertical: 10,
-            },
-          ]}></Text>
+        <Text style={[styles.SAVInfo]}>{text}</Text>
+        <Text style={[styles.line]}></Text>
       </View>
 
       {/* modalize */}
@@ -89,5 +59,3 @@ const SavInfo = ({ title, text, goTo }) => {
 };
 
 export default SavInfo;
-
-const styles = StyleSheet.create({});
