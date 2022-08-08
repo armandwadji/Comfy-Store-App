@@ -5,10 +5,10 @@ import { COLORS } from "../../../constants/theme";
 import { useGlobalContext } from "../../../context/Context";
 import { formatPrice } from "../../../utils/Utils";
 import { useIsFocused } from "@react-navigation/native";
+import styles from "./TotalBasketStyle";
 
 // Icons
 import Feather from "react-native-vector-icons/Feather";
-import styles from "./TotalBasketStyle";
 
 const TotalBasket = () => {
   // On importe le prix et la quantité total

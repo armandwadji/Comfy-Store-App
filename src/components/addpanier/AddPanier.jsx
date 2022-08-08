@@ -3,7 +3,6 @@ import * as Animatable from "react-native-animatable";
 import React, { useRef } from "react";
 import styles from "./AddPanierStyle";
 import { useGlobalContext } from "../../context/Context";
-
 import { Modalize } from "react-native-modalize";
 import { windowHeight } from "../../constants/theme";
 import GoToBasket from "./goToBasket/GoToBasket";

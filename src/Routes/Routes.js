@@ -2,16 +2,16 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../pages/homeScreen/HomeScreen";
 import StoreScreen from "../pages/storeScreen/StoreScreen";
 import BasketScreen from "../pages/basketScreen/BasketScreen";
-
-//Icons
-import Entypo from "react-native-vector-icons/Entypo";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { Animated, StyleSheet, Text, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useRef } from "react";
 import { COLORS, windowHeight, windowWidth } from "../constants/theme";
 import { useGlobalContext } from "../context/Context";
+
+//Icons
+import Entypo from "react-native-vector-icons/Entypo";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 
 const BottomTabScreen = ({ route }) => {
   // Variable qui va nous diriger vers le screen correspondant
@@ -60,20 +60,14 @@ const BottomTabScreen = ({ route }) => {
 
               case "Basket":
                 if (!focused) {
-                  return (
-                    <>
-                      <SimpleLineIcons name='basket' size={35} />
-                    </>
-                  );
+                  return <SimpleLineIcons name='basket' size={35} />;
                 } else {
                   return (
-                    <>
-                      <FontAwesome
-                        name='shopping-cart'
-                        size={35}
-                        color={COLORS.orange}
-                      />
-                    </>
+                    <FontAwesome
+                      name='shopping-cart'
+                      size={35}
+                      color={COLORS.orange}
+                    />
                   );
                 }
 
