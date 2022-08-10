@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   treeTimesContainer: {
     borderWidth: 1,
-    borderRadius: "200",
+    borderRadius: 200,
     backgroundColor: COLORS.black,
     color: COLORS.white,
     padding: 3,

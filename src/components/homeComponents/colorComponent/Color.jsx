@@ -7,7 +7,7 @@ const Color = ({ color: { item } }) => {
       style={{
         height: 25,
         width: 25,
-        borderRadius: "100%",
+        borderRadius: 100,
         marginVertical: 5,
         marginHorizontal: 5,
         backgroundColor: item,

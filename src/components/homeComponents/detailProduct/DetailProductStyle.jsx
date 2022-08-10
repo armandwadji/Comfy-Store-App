@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     top: 45,
     zIndex: 1,
     left: 20,
-    borderRadius: "100%",
+    borderRadius: 100,
     padding: 5,
   },
   detailContainer: {
