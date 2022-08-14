@@ -1,4 +1,10 @@
-import { Text, ScrollView, FlatList, StatusBar } from "react-native";
+import {
+  Text,
+  ScrollView,
+  FlatList,
+  StatusBar,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 
 import Search from "../../components/searchComponent/Search";
@@ -8,6 +14,7 @@ import UseProducts from "../../hooks/products/UseProducts";
 import styles from "./HomeScreenStyle";
 
 import { useIsFocused } from "@react-navigation/native";
+import { COLORS, windowHeight } from "../../constants/theme";
 
 const HomeScreen = () => {
   //Méthode pour afficher la barre de recherche au scroll positif de l'utilisateur
@@ -45,15 +52,28 @@ const HomeScreen = () => {
         </Text>
 
         {/* Articles */}
-        <FlatList
-          data={featured}
-          renderItem={({ item, index }) => (
-            <Product article={item} index={index} />
-          )}
-          keyExtractor={(article) => article.id}
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}
-        />
+
+        {featured ? (
+          <FlatList
+            data={featured}
+            renderItem={({ item, index }) => (
+              <Product article={item} index={index} />
+            )}
+            keyExtractor={(article) => article.id}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+          />
+        ) : (
+          <ActivityIndicator
+            size={30}
+            color={COLORS.orange}
+            style={{
+              flex: 1,
+              height: windowHeight / 2,
+              alignItems: "center",
+            }}
+          />
+        )}
       </ScrollView>
     </>
   );
