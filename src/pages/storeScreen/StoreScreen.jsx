@@ -78,7 +78,7 @@ const StoreScreen = () => {
       {/* BottomFilter */}
       <Modalize
         ref={modalizeRef}
-        modalHeight={windowHeight / 1.3}
+        modalHeight={windowHeight / 2}
         snapPoint={windowHeight / 1.1}>
         <BottomSheet products={products} getProductFilter={setProductsFilter} />
       </Modalize>

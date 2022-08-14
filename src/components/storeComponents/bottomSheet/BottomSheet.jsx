@@ -87,7 +87,7 @@ const BottomSheet = ({ products, getProductFilter }) => {
         {/* parameters */}
         <View
           style={{
-            marginTop: "20%",
+            marginTop: "18%",
           }}>
           {/* Companies */}
           <>
@@ -106,9 +106,27 @@ const BottomSheet = ({ products, getProductFilter }) => {
                 keyExtractor={(category) => category}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                bounces={false}
+                // bounces={false}
               />
             </View>
+          </>
+
+          {/* Price */}
+          <>
+            <Text style={[styles.pricetitle]}>
+              Price : {price && price !== 0 ? price : maxPrices / 2}
+              {" $"}
+            </Text>
+            <Slider
+              style={[styles.slider]}
+              minimumValue={0}
+              maximumValue={maxPrices}
+              thumbTintColor={COLORS.orange}
+              minimumTrackTintColor={COLORS.orange}
+              maximumTrackTintColor={COLORS.background}
+              value={maxPrices / 2}
+              onValueChange={(value) => setPrice(parseInt(value))}
+            />
           </>
 
           {/* Categories */}
@@ -130,27 +148,9 @@ const BottomSheet = ({ products, getProductFilter }) => {
                 keyExtractor={(category) => category}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                bounces={false}
+                // bounces={false}
               />
             </View>
-          </>
-
-          {/* Price */}
-          <>
-            <Text style={[styles.pricetitle]}>
-              Price : {price && price !== 0 ? price : maxPrices / 2}
-              {" $"}
-            </Text>
-            <Slider
-              style={[styles.slider]}
-              minimumValue={0}
-              maximumValue={maxPrices}
-              thumbTintColor={COLORS.orange}
-              minimumTrackTintColor={COLORS.orange}
-              maximumTrackTintColor={COLORS.background}
-              value={maxPrices / 2}
-              onValueChange={(value) => setPrice(parseInt(value))}
-            />
           </>
         </View>
       </ScrollView>

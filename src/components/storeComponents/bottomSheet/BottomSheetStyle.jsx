@@ -45,8 +45,7 @@ const styles = StyleSheet.create({
     color: COLORS.teal,
   },
   pricetitle: {
-    marginTop: 15,
-    marginBottom: 20,
+    marginVertical: 20,
     marginLeft: 15,
     fontSize: 20,
     fontWeight: "bold",
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     width: windowWidth - 40,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 50,
+    // marginVertical: 10,
     height: 20,
   },
 });
