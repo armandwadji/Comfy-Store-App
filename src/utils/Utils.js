@@ -6,6 +6,6 @@ export const formatPrice = (price) => {
   let formattedprice = new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
-  }).format((price / 10).toFixed(2));
+  }).format((price / 100).toFixed(2));
   return formattedprice;
 };

@@ -18,7 +18,7 @@ const HomeScreen = () => {
 
   //On va chercher la data grace à un hook personnalisé useproducts
   const products = UseProducts();
-  const featured = products?.filter((product) => product.fields.featured);
+  const featured = products?.filter((product) => product.featured);
 
   const isFocused = useIsFocused();
 

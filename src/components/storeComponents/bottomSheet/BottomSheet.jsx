@@ -1,45 +1,66 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { COLORS } from "../../../constants/theme";
 import Search from "../../searchComponent/Search";
 import Slider from "@react-native-community/slider";
 import styles from "./BottomSheetStyle";
+import Categories from "./categories/Categories";
+import Companies from "./companies/Companies";
 
 const BottomSheet = ({ products, getProductFilter }) => {
   //On stock toutes les catégories disponibles
-  const companies = [
+  const companies = ["all", ...new Set(products?.map((item) => item.company))];
+
+  //On stock toutes les catégories disponibles
+  const categories = [
     "all",
-    ...new Set(products?.map((item) => item.fields.company)),
+    ...new Set(products?.map((item) => item.category)),
   ];
 
   //On trouve le pris maximum des articles
-  const prices = [...new Set(products?.map((item) => item.fields.price))];
-  const maxPrices = Math.ceil(Math.max(...prices) / 10);
+  const prices = [...new Set(products?.map((item) => item.price))];
+  const maxPrices = Math.ceil(Math.max(...prices) / 100);
 
-  // On initialise un tableau vide de produits filters
+  // On initialise un tableau de produits filters contenant tous les produits au départ.
   let productsFilter = [...products];
 
-  const [price, setprice] = useState(maxPrices);
-  const [categorie, setCategorie] = useState("all");
+  const [price, setPrice] = useState(null);
+  const [Company, setCompany] = useState("all");
+  const [Categorie, setCategorie] = useState("all");
   const [search, setSearch] = useState("");
 
-  const handleFilterCompany = (company, price, search) => {
+  const handleFilterCompany = (company, price, search, category) => {
     // Filtre selon le prix
-    productsFilter = products.filter(
-      (product) => product.fields.price / 10 <= price
-    );
+    if (price) {
+      productsFilter = products.filter(
+        (product) => product.price / 100 <= price
+      );
+    }
 
-    // Filtre selon la categorie
+    // Filtre selon la company
     if (company !== "all") {
       productsFilter = productsFilter.filter(
-        (product) => product.fields.company === company
+        (product) => product.company === company
+      );
+    }
+
+    // Filtre selon la category
+    if (category !== "all") {
+      productsFilter = productsFilter.filter(
+        (product) => product.category === category
       );
     }
 
     // Filtre selon la recherche
     if (search) {
       productsFilter = productsFilter.filter((product) => {
-        if (product.fields.name.includes(search.toLowerCase())) {
+        if (product.name.includes(search.toLowerCase())) {
           return product;
         }
       });
@@ -51,8 +72,8 @@ const BottomSheet = ({ products, getProductFilter }) => {
 
   // On exécute la fonction a chaque fois que l'un des trois paramètres de cette fonction est modifié
   useEffect(() => {
-    handleFilterCompany(categorie, price, search);
-  }, [categorie, price, search]);
+    handleFilterCompany(Company, price, search, Categorie);
+  }, [Company, price, search, Categorie]);
 
   return (
     <View easing='ease' style={[styles.bottomSheetContainer]}>
@@ -72,33 +93,52 @@ const BottomSheet = ({ products, getProductFilter }) => {
           <>
             <Text style={[styles.companiesTitle]}>companies</Text>
             <View style={[styles.companiesContainer]}>
-              {companies.map((company) => (
-                <TouchableOpacity
-                  key={company}
-                  onPress={() => setCategorie(company)}
-                  style={[
-                    styles.companyBorder,
-                    categorie === company && {
-                      backgroundColor: COLORS.orange,
-                      borderColor: COLORS.white,
-                    },
-                  ]}>
-                  <Text
-                    style={[
-                      styles.company,
-                      categorie === company && { color: COLORS.white },
-                    ]}>
-                    {company}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+              <FlatList
+                data={companies}
+                renderItem={({ item }) => (
+                  <Companies
+                    company={item}
+                    Company={Company}
+                    setCompany={setCompany}
+                    index={item}
+                  />
+                )}
+                keyExtractor={(category) => category}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                bounces={false}
+              />
+            </View>
+          </>
+
+          {/* Categories */}
+          <>
+            <Text style={[styles.companiesTitle, { marginVertical: 15 }]}>
+              categories
+            </Text>
+            <View style={[styles.companiesContainer]}>
+              <FlatList
+                data={categories}
+                renderItem={({ item }) => (
+                  <Categories
+                    category={item}
+                    index={item}
+                    Categorie={Categorie}
+                    setCategorie={setCategorie}
+                  />
+                )}
+                keyExtractor={(category) => category}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                bounces={false}
+              />
             </View>
           </>
 
           {/* Price */}
           <>
             <Text style={[styles.pricetitle]}>
-              Price : {price && price !== 0 && price}
+              Price : {price && price !== 0 ? price : maxPrices / 2}
               {" $"}
             </Text>
             <Slider
@@ -109,7 +149,7 @@ const BottomSheet = ({ products, getProductFilter }) => {
               minimumTrackTintColor={COLORS.orange}
               maximumTrackTintColor={COLORS.background}
               value={maxPrices / 2}
-              onValueChange={(value) => setprice(parseInt(value))}
+              onValueChange={(value) => setPrice(parseInt(value))}
             />
           </>
         </View>

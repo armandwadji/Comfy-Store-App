@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import UseProduct from "../../../hooks/product/UseProduct";
+// import UseProduct from "../../../hooks/product/UseProduct";
 import { COLORS } from "../../../constants/theme";
 import styles from "./DetailProductStyle";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -19,7 +19,8 @@ import AddPanier from "../../addpanier/AddPanier";
 import SavInfo from "./savInfos/SavInfo";
 
 const DetailProduct = ({ route, navigation }) => {
-  const { id, like, name, price, image } = route.params;
+  const { id, like, name, price, image, description, company, colors } =
+    route.params;
 
   const [loading, setLoading] = useState(true);
 
@@ -31,14 +32,14 @@ const DetailProduct = ({ route, navigation }) => {
   };
 
   //Pour aller chercher le détail du produit
-  const product = UseProduct(id);
+  // const product = UseProduct(id);
 
   //Pour ajouter dans le panier en cas de click de l'utilisateur
   const panier = { id, name, price, image };
 
   useEffect(() => {
-    product && setLoading(false);
-  }, [product]);
+    route.params && setLoading(false);
+  }, [route.params]);
   return (
     <View style={[styles.detailProductContainer]}>
       {loading ? (
@@ -64,7 +65,7 @@ const DetailProduct = ({ route, navigation }) => {
             <View style={[styles.detailContainer]}>
               {/* Image */}
               <Image
-                source={{ uri: product?.fields.image[0].url }}
+                source={{ uri: image }}
                 resizeMode='cover'
                 style={[styles.img]}
               />
@@ -73,7 +74,7 @@ const DetailProduct = ({ route, navigation }) => {
               <View style={[styles.infoContainer]}>
                 {/* Title */}
                 <View style={[styles.titleContainer]}>
-                  <Text style={[styles.title]}>{product?.fields.name}</Text>
+                  <Text style={[styles.title]}>{name}</Text>
 
                   <AntDesign
                     name={like ? "heart" : "hearto"}
@@ -85,9 +86,7 @@ const DetailProduct = ({ route, navigation }) => {
 
                 {/* Description */}
                 <Text style={[styles.description]}>
-                  {descLength
-                    ? truncateText(product.fields.description, 110)
-                    : product.fields.description}
+                  {descLength ? truncateText(description, 110) : description}
 
                   {/* ... pour avoir plus de détail sur la description */}
                   {descLength ? (
@@ -105,25 +104,20 @@ const DetailProduct = ({ route, navigation }) => {
 
                 {/* Company */}
                 <Text style={[styles.categoryContainer]}>
-                  par{" "}
-                  <Text style={[styles.category]}>
-                    {product.fields.company}
-                  </Text>
+                  par <Text style={[styles.category]}>{company}</Text>
                 </Text>
 
                 {/* Price */}
                 <View style={{ marginBottom: 5 }}>
-                  <Text style={[styles.price]}>
-                    {formatPrice(product.fields.price)}
-                  </Text>
+                  <Text style={[styles.price]}>{formatPrice(price)}</Text>
                   <Text style={[styles.sansFrais]}>
-                    ou 3 x {formatPrice(product.fields.price / 3)} sans frais
+                    ou 3 x {formatPrice(price / 3)} sans frais
                   </Text>
                 </View>
 
                 {/* Colors */}
                 <FlatList
-                  data={product.fields.colors}
+                  data={colors}
                   keyExtractor={(article, index) => index}
                   horizontal={true}
                   bounces={false}

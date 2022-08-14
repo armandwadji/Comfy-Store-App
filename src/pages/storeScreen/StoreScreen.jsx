@@ -61,7 +61,15 @@ const StoreScreen = () => {
                 <EmptySearch />
               )
             ) : (
-              <ActivityIndicator size={30} color={COLORS.orange} />
+              <ActivityIndicator
+                size={30}
+                color={COLORS.orange}
+                style={{
+                  flex: 1,
+                  height: windowHeight / 2,
+                  alignItems: "center",
+                }}
+              />
             )}
           </ScrollView>
         </View>

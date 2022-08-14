@@ -14,10 +14,7 @@ const Product = ({ article, index }) => {
 
   const navigation = useNavigation();
 
-  const {
-    id,
-    fields: { price, name, image },
-  } = article;
+  const { id, price, name, image, description, company, colors } = article;
 
   const isFocused = useIsFocused();
 
@@ -30,8 +27,11 @@ const Product = ({ article, index }) => {
           id,
           name,
           price,
-          image: image.at(0).url,
+          image,
           like,
+          description,
+          company,
+          colors,
         })
       }>
       <Animatable.View
@@ -40,7 +40,7 @@ const Product = ({ article, index }) => {
         <View style={[styles.imgContainer, { transform: [{ scale: 1 }] }]}>
           <Image
             source={{
-              uri: image.at(0).url,
+              uri: image,
             }}
             resizeMode={"cover"}
             style={[styles.img]}
