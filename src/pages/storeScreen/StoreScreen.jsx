@@ -62,7 +62,7 @@ const StoreScreen = () => {
               )
             ) : (
               <ActivityIndicator
-                size={30}
+                size={"large"}
                 color={COLORS.orange}
                 style={{
                   flex: 1,

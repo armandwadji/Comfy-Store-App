@@ -43,7 +43,7 @@ const DetailProduct = ({ route, navigation }) => {
   return (
     <View style={[styles.detailProductContainer]}>
       {loading ? (
-        <ActivityIndicator size={30} color={COLORS.orange} />
+        <ActivityIndicator size={"large"} color={COLORS.orange} />
       ) : (
         <>
           <ScrollView
