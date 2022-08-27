@@ -79,10 +79,9 @@ const BottomTabScreen = ({ route }) => {
                 }
 
               default:
+                // Redirection direct vers le panier
+                ecran && (route.name = ecran.screen);
             }
-
-            // Redirection direct vers le panier
-            ecran && (route.name = ecran.screen);
           },
         })}>
         <Tab.Screen
