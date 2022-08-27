@@ -47,7 +47,7 @@ const Article = ({ article, index }) => {
               style={[styles.delete]}
               onPress={() => delPanier(id)}>
               <AntDesign name='delete' size={15} />
-              <Text style={[styles.deleteText]}>Supprimer l'artilce</Text>
+              <Text style={[styles.deleteText]}>Supprimer l'article</Text>
             </TouchableOpacity>
             <Text style={[styles.price]}> {formatPrice(price * amount)} </Text>
           </View>
