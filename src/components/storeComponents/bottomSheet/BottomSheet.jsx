@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, ScrollView, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { COLORS } from "../../../constants/theme";
 import Search from "../../searchComponent/Search";
@@ -35,6 +29,7 @@ const BottomSheet = ({ products, getProductFilter }) => {
   const [Categorie, setCategorie] = useState("all");
   const [search, setSearch] = useState("");
 
+  // Fonction qui actualise le filtre en fonction des actions de l'utilisateur
   const handleFilterCompany = (company, price, search, category) => {
     // Filtre selon le prix
     if (price) {
@@ -70,7 +65,7 @@ const BottomSheet = ({ products, getProductFilter }) => {
     getProductFilter(productsFilter);
   };
 
-  // On exécute la fonction a chaque fois que l'un des trois paramètres de cette fonction est modifié
+  // On exécute la fonction a chaque fois que l'un des quatres paramètres de cette fonction est modifié
   useEffect(() => {
     handleFilterCompany(Company, price, search, Categorie);
   }, [Company, price, search, Categorie]);
