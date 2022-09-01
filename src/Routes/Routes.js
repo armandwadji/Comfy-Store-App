@@ -3,7 +3,7 @@ import HomeScreen from "../pages/homeScreen/HomeScreen";
 import StoreScreen from "../pages/storeScreen/StoreScreen";
 import BasketScreen from "../pages/basketScreen/BasketScreen";
 import TotalAmount from "../components/homeComponents/totalAmount/TotalAmount";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, SafeAreaView, StyleSheet, View } from "react-native";
 import { useRef } from "react";
 import { COLORS, windowHeight, windowWidth } from "../constants/theme";
 
@@ -20,13 +20,16 @@ const BottomTabScreen = ({ route }) => {
   const offSetAnimation = useRef(new Animated.Value(0)).current;
 
   return (
-    <>
+    <View
+      style={{
+        height: windowHeight,
+      }}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
-            // height: 80,
+            height: 65,
           },
 
           tabBarIcon: ({ focused }) => {
@@ -133,17 +136,17 @@ const BottomTabScreen = ({ route }) => {
           },
         ]}
       />
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   indicator: {
     position: "absolute",
-    // width: 40,
+    width: 40,
     height: 2,
     backgroundColor: COLORS.orange,
-    top: windowHeight - 35,
+    bottom: 64,
     left: windowWidth / 3 / 2 - 20,
     zIndex: 100,
   },
