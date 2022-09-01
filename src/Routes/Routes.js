@@ -131,7 +131,8 @@ const BottomTabScreen = ({ route }) => {
               },
             ],
           },
-        ]}></Animated.View>
+        ]}
+      />
     </>
   );
 };
