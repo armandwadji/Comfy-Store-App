@@ -7,7 +7,7 @@ import { Modalize } from "react-native-modalize";
 import { windowHeight } from "../../constants/theme";
 import GoToBasket from "./goToBasket/GoToBasket";
 
-const AddPanier = ({ panier }) => {
+const AddPanier = ({ panier, meter }) => {
   const { increase } = useGlobalContext();
   const { id, name, price, image } = panier;
 
@@ -25,7 +25,7 @@ const AddPanier = ({ panier }) => {
         delay={200}
         duration={400}
         easing='ease-in'
-        style={[styles.addButtonContainer]}>
+        style={[styles.addButtonContainer, { bottom: meter ? meter : 25 }]}>
         <TouchableOpacity
           onPress={() => {
             increase(id, name, price, image);

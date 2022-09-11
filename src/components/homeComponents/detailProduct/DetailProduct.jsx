@@ -17,6 +17,7 @@ import Color from "../colorComponent/Color";
 import { formatPrice, truncateText } from "../../../utils/Utils";
 import AddPanier from "../../addpanier/AddPanier";
 import SavInfo from "./savInfos/SavInfo";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const DetailProduct = ({ route, navigation }) => {
   const { id, like, name, price, image, description, company, colors } =
@@ -37,6 +38,7 @@ const DetailProduct = ({ route, navigation }) => {
   //Pour ajouter dans le panier en cas de click de l'utilisateur
   const panier = { id, name, price, image };
 
+  const insets = useSafeAreaInsets();
   useEffect(() => {
     route.params && setLoading(false);
   }, [route.params]);
@@ -48,7 +50,9 @@ const DetailProduct = ({ route, navigation }) => {
         <>
           <ScrollView
             showsVerticalScrollIndicator={false}
-            style={{ marginBottom: 50 }}>
+            style={{
+              marginBottom: insets.bottom === 0 ? 80 : insets.bottom,
+            }}>
             {/* BackNavigate */}
             <TouchableOpacity
               onPress={() => navigation.goBack()}
