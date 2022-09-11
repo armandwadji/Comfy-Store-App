@@ -23,6 +23,7 @@ const BottomTabScreen = ({ route }) => {
     <View
       style={{
         height: windowHeight,
+        position: "relative",
       }}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -48,7 +49,7 @@ const BottomTabScreen = ({ route }) => {
                   return (
                     <FontAwesome
                       name='shopping-bag'
-                      size={35}
+                      size={30}
                       color={COLORS.orange}
                     />
                   );

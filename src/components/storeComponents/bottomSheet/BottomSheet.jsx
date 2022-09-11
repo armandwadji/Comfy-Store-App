@@ -6,6 +6,7 @@ import Slider from "@react-native-community/slider";
 import styles from "./BottomSheetStyle";
 import Categories from "./categories/Categories";
 import Companies from "./companies/Companies";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BottomSheet = ({ products, getProductFilter }) => {
   //On stock toutes les catégories disponibles
@@ -70,14 +71,21 @@ const BottomSheet = ({ products, getProductFilter }) => {
     handleFilterCompany(Company, price, search, Categorie);
   }, [Company, price, search, Categorie]);
 
+  const insets = useSafeAreaInsets();
+
   return (
     <View easing='ease' style={[styles.bottomSheetContainer]}>
       <ScrollView>
         {/* Top line */}
-        <View style={styles.line} />
+        {/* <View style={styles.line} /> */}
 
         {/* SearchComponent */}
-        <Search color={COLORS.teal} setSearch={setSearch} />
+
+        <Search
+          color={COLORS.teal}
+          setSearch={setSearch}
+          meter={-insets.top + 20}
+        />
 
         {/* parameters */}
         <View
