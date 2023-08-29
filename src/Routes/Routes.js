@@ -3,7 +3,7 @@ import HomeScreen from "../pages/homeScreen/HomeScreen";
 import StoreScreen from "../pages/storeScreen/StoreScreen";
 import BasketScreen from "../pages/basketScreen/BasketScreen";
 import TotalAmount from "../components/homeComponents/totalAmount/TotalAmount";
-import { Animated, SafeAreaView, StyleSheet, View } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 import { useRef } from "react";
 import { COLORS, windowHeight, windowWidth } from "../constants/theme";
 
@@ -12,7 +12,8 @@ import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 
-const BottomTabScreen = ({ route }) => {
+const BottomTabScreen = ( { route } ) => {
+  
   // Variable qui va nous diriger vers le screen correspondant
   const ecran = route.params;
 
@@ -20,63 +21,35 @@ const BottomTabScreen = ({ route }) => {
   const offSetAnimation = useRef(new Animated.Value(0)).current;
 
   return (
-    <View
-      style={{
-        height: windowHeight,
-        position: "relative",
-      }}>
+    <View style={{ height: windowHeight, position: "relative", }}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarStyle: {
-            height: 65,
-          },
+          tabBarStyle: { height: 65 },
 
           tabBarIcon: ({ focused }) => {
             switch (route.name) {
               case "Home":
-                if (focused) {
-                  return <Entypo name='home' size={40} color={COLORS.orange} />;
-                } else {
-                  return <SimpleLineIcons name='home' size={30} />;
-                }
-
+                if ( focused ) return <Entypo name='home' size={ 40 } color={ COLORS.orange } />;
+                else return <SimpleLineIcons name='home' size={30} />;
+              
               case "Store":
-                if (!focused) {
-                  return <SimpleLineIcons name='handbag' size={35} />;
-                } else {
-                  return (
-                    <FontAwesome
-                      name='shopping-bag'
-                      size={30}
-                      color={COLORS.orange}
-                    />
-                  );
-                }
+                if (!focused) return <SimpleLineIcons name='handbag' size={35} />;
+                else return <FontAwesome name='shopping-bag' size={ 30 } color={ COLORS.orange } />;
 
               case "Basket":
                 if (!focused) {
                   return (
-                    <View
-                      style={{
-                        position: "relative",
-                      }}>
+                    <View style={{position: "relative"}}>
                       <SimpleLineIcons name='basket' size={35} />
                       <TotalAmount />
                     </View>
                   );
                 } else {
                   return (
-                    <View
-                      style={{
-                        position: "relative",
-                      }}>
-                      <FontAwesome
-                        name='shopping-cart'
-                        size={35}
-                        color={COLORS.orange}
-                      />
+                    <View style={{ position: "relative"}}>
+                      <FontAwesome name='shopping-cart' size={35} color={COLORS.orange}/>
                       <TotalAmount />
                     </View>
                   );
@@ -125,18 +98,7 @@ const BottomTabScreen = ({ route }) => {
           }}
         />
       </Tab.Navigator>
-      <Animated.View
-        style={[
-          styles.indicator,
-          {
-            transform: [
-              {
-                translateX: offSetAnimation,
-              },
-            ],
-          },
-        ]}
-      />
+      <Animated.View style={[ styles.indicator, { transform: [{ translateX: offSetAnimation } ] } ]}/>
     </View>
   );
 };

@@ -1,10 +1,7 @@
 import { View, Text, ActivityIndicator, Image } from "react-native";
 import React from "react";
 import styles from "./HeaderStyle";
-import {
-  KaushanScript_400Regular,
-  useFonts,
-} from "@expo-google-fonts/kaushan-script";
+import { KaushanScript_400Regular, useFonts } from "@expo-google-fonts/kaushan-script";
 
 import { Video } from "expo-av";
 import { useIsFocused } from "@react-navigation/native";
@@ -17,9 +14,7 @@ const Header = () => {
   //Variable déterminant la distance du top
   const insets = useSafeAreaInsets();
 
-  let [fontsLoaded, error] = useFonts({
-    title: KaushanScript_400Regular,
-  });
+  let [ fontsLoaded, error ] = useFonts( { title: KaushanScript_400Regular } );
 
   //Condition dans le cas où la font n'est pas encore charger
   if (!fontsLoaded) {
@@ -34,38 +29,16 @@ const Header = () => {
         shouldPlay={isFocused ? true : false}
         isLooping={true}
         useNativeControls={false}
-        style={[styles.imgBackground]}>
+        style={ [ styles.imgBackground ] }>
+        
         {/* Logo du Shop */}
-        <View
-          style={[
-            styles.imgcontainer,
-            {
-              position: "absolute",
-              top: insets.top,
-              width: windowWidth,
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              zIndex: 100,
-            },
-          ]}>
-          <Image
-            source={require("../../../../assets/img/logo-white.png")}
-            resizeMode='cover'
-            style={[
-              styles.img,
-              {
-                height: 60,
-                width: 100,
-              },
-            ]}
-          />
+        <View style={[ styles.imgcontainer, {top: insets.top,width: windowWidth } ]}>
+          <Image source={require("../../../../assets/img/logo-white.png")} resizeMode='cover' style={ styles.img }/>
         </View>
+
         {/* Devise du Shop*/}
         <View style={styles.infoContainer}>
-          <Text style={[styles.text, { fontFamily: "title" }]}>
-            Shaki Store
-          </Text>
+          <Text style={[styles.text, { fontFamily: "title" }]}> Shaki Store </Text>
         </View>
       </Video>
     </View>

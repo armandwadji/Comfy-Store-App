@@ -4,20 +4,8 @@ import { COLORS } from "../../../../constants/theme";
 
 const Category = ({ category, Categorie, setCategorie }) => {
   return (
-    <TouchableOpacity
-      onPress={() => setCategorie(category)}
-      style={[
-        styles.companyBorder,
-        Categorie === category && {
-          backgroundColor: COLORS.orange,
-          borderColor: COLORS.white,
-        },
-      ]}>
-      <Text
-        style={[
-          styles.company,
-          Categorie === category && { color: COLORS.white },
-        ]}>
+    <TouchableOpacity onPress={ _ => setCategorie(category)} style={[ styles.companyBorder, Categorie === category && { backgroundColor: COLORS.orange, borderColor: COLORS.white}]}>
+      <Text style={[ styles.company, Categorie === category && { color: COLORS.white } ]}>
         {category}
       </Text>
     </TouchableOpacity>

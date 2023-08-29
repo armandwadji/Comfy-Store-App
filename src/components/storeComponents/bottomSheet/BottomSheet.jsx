@@ -13,10 +13,7 @@ const BottomSheet = ({ products, getProductFilter }) => {
   const companies = ["all", ...new Set(products?.map((item) => item.company))];
 
   //On stock toutes les catégories disponibles
-  const categories = [
-    "all",
-    ...new Set(products?.map((item) => item.category)),
-  ];
+  const categories = [ "all", ...new Set( products?.map( ( item ) => item.category ) ) ];
 
   //On trouve le pris maximum des articles
   const prices = [...new Set(products?.map((item) => item.price))];
@@ -33,34 +30,16 @@ const BottomSheet = ({ products, getProductFilter }) => {
   // Fonction qui actualise le filtre en fonction des actions de l'utilisateur
   const handleFilterCompany = (company, price, search, category) => {
     // Filtre selon le prix
-    if (price) {
-      productsFilter = products.filter(
-        (product) => product.price / 100 <= price
-      );
-    }
-
+    if ( price ) productsFilter = products.filter( product => price === 0 ? [] : product.price / 100 <= price );
+    
     // Filtre selon la company
-    if (company !== "all") {
-      productsFilter = productsFilter.filter(
-        (product) => product.company === company
-      );
-    }
-
+    if ( company !== "all" ) productsFilter = productsFilter.filter( product => product.company === company );
+    
     // Filtre selon la category
-    if (category !== "all") {
-      productsFilter = productsFilter.filter(
-        (product) => product.category === category
-      );
-    }
-
+    if ( category !== "all" ) productsFilter = productsFilter.filter( product => product.category === category );
+    
     // Filtre selon la recherche
-    if (search) {
-      productsFilter = productsFilter.filter((product) => {
-        if (product.name.includes(search.toLowerCase())) {
-          return product;
-        }
-      });
-    }
+    if ( search ) productsFilter = productsFilter.filter( product => ( product.name.includes( search.toLowerCase() ) ) );
 
     // On actualise le filtre apres les modifications
     getProductFilter(productsFilter);
@@ -76,52 +55,30 @@ const BottomSheet = ({ products, getProductFilter }) => {
   return (
     <View easing='ease' style={[styles.bottomSheetContainer]}>
       <ScrollView>
-        {/* Top line */}
-        {/* <View style={styles.line} /> */}
 
         {/* SearchComponent */}
-
-        <Search
-          color={COLORS.teal}
-          setSearch={setSearch}
-          meter={-insets.top + 20}
-        />
+        <Search color={COLORS.teal} setSearch={setSearch} meter={-insets.top + 20}/>
 
         {/* parameters */}
-        <View
-          style={{
-            marginTop: "18%",
-          }}>
+        <View style={ { marginTop: "18%" } }>
+          
           {/* Companies */}
-          <>
             <Text style={[styles.companiesTitle]}>companies</Text>
             <View style={[styles.companiesContainer]}>
               <FlatList
                 data={companies}
-                renderItem={({ item }) => (
-                  <Companies
-                    company={item}
-                    Company={Company}
-                    setCompany={setCompany}
-                    index={item}
-                  />
-                )}
+                renderItem={({ item }) => <Companies company={item} Company={Company} setCompany={setCompany} index={item}/>}
                 keyExtractor={(category) => category}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                // bounces={false}
               />
             </View>
-          </>
 
           {/* Price */}
-          <>
-            <Text style={[styles.pricetitle]}>
-              Price : {price && price !== 0 ? price : maxPrices / 2}
-              {" $"}
+            <Text style={[styles.pricetitle]}> Price : {price && price !== 0 ? price : price===0 ? 0 : maxPrices / 2} {" $"}
             </Text>
             <Slider
-              style={[styles.slider]}
+              style={styles.slider}
               minimumValue={0}
               maximumValue={maxPrices}
               thumbTintColor={COLORS.orange}
@@ -130,31 +87,20 @@ const BottomSheet = ({ products, getProductFilter }) => {
               value={maxPrices / 2}
               onValueChange={(value) => setPrice(parseInt(value))}
             />
-          </>
 
           {/* Categories */}
-          <>
             <Text style={[styles.companiesTitle, { marginVertical: 15 }]}>
               categories
             </Text>
             <View style={[styles.companiesContainer]}>
               <FlatList
                 data={categories}
-                renderItem={({ item }) => (
-                  <Categories
-                    category={item}
-                    index={item}
-                    Categorie={Categorie}
-                    setCategorie={setCategorie}
-                  />
-                )}
+                renderItem={({ item }) => <Categories category={item} index={item} Categorie={Categorie} setCategorie={setCategorie} />}
                 keyExtractor={(category) => category}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                // bounces={false}
               />
             </View>
-          </>
         </View>
       </ScrollView>
     </View>

@@ -12,25 +12,11 @@ const initialState = {
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const increase = (id, name = "", price = "", image = "") => {
-    dispatch({
-      type: "INCREASE",
-      payload: { id, name, price, image },
-    });
-  };
-  const decrease = (id) => {
-    dispatch({
-      type: "DECREASE",
-      payload: id,
-    });
-  };
+  const increase = ( id, name = "", price = "", image = "" ) => dispatch( { type: "INCREASE", payload: { id, name, price, image } } );
+  
+  const decrease = id => dispatch( { type: "DECREASE", payload: id } );
 
-  const delPanier = (id) => {
-    dispatch({
-      type: "DEL_PANIER",
-      payload: id,
-    });
-  };
+  const delPanier = id => { dispatch( { type: "DEL_PANIER", payload: id } ) };
 
   useEffect(() => {
     dispatch({ type: "GET_TOTALS" });

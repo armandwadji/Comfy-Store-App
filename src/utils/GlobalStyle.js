@@ -3,13 +3,10 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
 const GlobalStyle = () => {
-  let [fontsLoaded, error] = useFonts({
-    title: KaushanScript_400Regular,
-  });
+  const [ fontsLoaded, error ] = useFonts( { title: KaushanScript_400Regular } );
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  if (!fontsLoaded) return <AppLoading />;
+  
   return { title };
 };
 

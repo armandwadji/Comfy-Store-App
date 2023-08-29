@@ -12,10 +12,7 @@ const AddPanier = ({ panier, meter }) => {
   const { id, name, price, image } = panier;
 
   const modalizeRef = useRef(null);
-
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
+  const onOpen = _ => modalizeRef.current?.open() ;
 
   return (
     <>
@@ -36,10 +33,7 @@ const AddPanier = ({ panier, meter }) => {
       </Animatable.View>
 
       {/* Modalize */}
-      <Modalize
-        ref={modalizeRef}
-        modalHeight={windowHeight / 1.3}
-        snapPoint={windowHeight / 2.5}>
+      <Modalize ref={modalizeRef} modalHeight={windowHeight / 1.3} snapPoint={windowHeight / 2.5}>
         <GoToBasket article={panier} />
       </Modalize>
     </>

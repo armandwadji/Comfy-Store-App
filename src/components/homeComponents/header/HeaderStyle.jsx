@@ -11,14 +11,24 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
   },
+  imgcontainer: {
+    position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    zIndex: 100,
+  },
   infoContainer: {
     position: "absolute",
     top: "40%",
     left: "10%",
     zIndex: 10,
   },
+  img: {
+    height: 60,
+    width: 100,
+  },
   text: {
-    // fontFamily: "title",
     color: COLORS.white,
     fontSize: 60,
     textTransform: "capitalize",

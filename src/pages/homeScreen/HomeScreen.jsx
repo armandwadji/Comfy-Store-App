@@ -1,40 +1,19 @@
-import {
-  Text,
-  ScrollView,
-  FlatList,
-  StatusBar,
-  ActivityIndicator,
-} from "react-native";
 import React, { useState } from "react";
-
+import { ScrollView, StatusBar } from "react-native";
 import Search from "../../components/searchComponent/Search";
 import Header from "../../components/homeComponents/header/Header";
-import Product from "../../components/productComponent/Product";
-import UseProducts from "../../hooks/products/UseProducts";
-import styles from "./HomeScreenStyle";
-
 import { useIsFocused } from "@react-navigation/native";
-import { COLORS, windowHeight } from "../../constants/theme";
+import Featured from "../../components/homeComponents/featured/Featured";
 
 const HomeScreen = () => {
   //Méthode pour afficher la barre de recherche au scroll positif de l'utilisateur
   const [scroll, setScroll] = useState(null);
-  const handleScroll = (e) => {
-    setScroll(Math.round(e.nativeEvent.contentOffset.y));
-  };
-
-  //On va chercher la data grace à un hook personnalisé useproducts
-  const products = UseProducts();
-  const featured = products?.filter((product) => product.featured);
-
+  const handleScroll =  e  =>  setScroll( Math.round( e.nativeEvent.contentOffset.y ) ) ;
   const isFocused = useIsFocused();
 
   return (
     <>
-      <StatusBar
-        barStyle={!isFocused ? "dark-content" : "light-content"}
-        animated={true}
-      />
+      <StatusBar barStyle={!isFocused ? "dark-content" : "light-content"} animated={true}/>
       <Search meter={65} scroll={scroll} press={true} />
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -42,38 +21,10 @@ const HomeScreen = () => {
         bounces={false}
         StickyHeaderComponent={<Search />}
         onScroll={(e) => handleScroll(e)}
-        scrollEventThrottle={500}>
-        {/* Header */}
+        scrollEventThrottle={ 500 }>
+        
         <Header />
-
-        {/* Featured */}
-        <Text style={styles.textContainer}>
-          <Text style={styles.slashcolor}>/</Text> Featured
-        </Text>
-
-        {/* Articles */}
-
-        {featured ? (
-          <FlatList
-            data={featured}
-            renderItem={({ item, index }) => (
-              <Product article={item} index={index} />
-            )}
-            keyExtractor={(article) => article.id}
-            showsHorizontalScrollIndicator={false}
-            horizontal={true}
-          />
-        ) : (
-          <ActivityIndicator
-            size={30}
-            color={COLORS.orange}
-            style={{
-              flex: 1,
-              height: windowHeight / 2,
-              alignItems: "center",
-            }}
-          />
-        )}
+        <Featured/>
       </ScrollView>
     </>
   );
