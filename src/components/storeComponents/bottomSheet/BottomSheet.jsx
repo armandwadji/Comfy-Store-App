@@ -7,13 +7,11 @@ import styles from "./BottomSheetStyle";
 import Categories from "./categories/Categories";
 import Companies from "./companies/Companies";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useGlobalContext } from "../../../context/Context";
 
-const BottomSheet = ({ products, getProductFilter }) => {
-  //On stock toutes les catégories disponibles
-  const companies = ["all", ...new Set(products?.map((item) => item.company))];
+const BottomSheet = ( { getProductFilter } ) => {
 
-  //On stock toutes les catégories disponibles
-  const categories = [ "all", ...new Set( products?.map( ( item ) => item.category ) ) ];
+  const { products } = useGlobalContext();
 
   //On trouve le pris maximum des articles
   const prices = [...new Set(products?.map((item) => item.price))];
@@ -66,7 +64,7 @@ const BottomSheet = ({ products, getProductFilter }) => {
             <Text style={[styles.companiesTitle]}>companies</Text>
             <View style={[styles.companiesContainer]}>
               <FlatList
-                data={companies}
+                data={["all", ...new Set(products?.map((item) => item.company))]}
                 renderItem={({ item }) => <Companies company={item} Company={Company} setCompany={setCompany} index={item}/>}
                 keyExtractor={(category) => category}
                 showsHorizontalScrollIndicator={false}
@@ -94,7 +92,7 @@ const BottomSheet = ({ products, getProductFilter }) => {
             </Text>
             <View style={[styles.companiesContainer]}>
               <FlatList
-                data={categories}
+                data={[ "all", ...new Set( products?.map( ( item ) => item.category ) ) ]}
                 renderItem={({ item }) => <Categories category={item} index={item} Categorie={Categorie} setCategorie={setCategorie} />}
                 keyExtractor={(category) => category}
                 showsHorizontalScrollIndicator={false}

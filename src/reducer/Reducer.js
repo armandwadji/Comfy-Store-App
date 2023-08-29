@@ -14,14 +14,18 @@ const reducer = (state, action) => {
       return { ...state, panier: decreasePanier };
 
     case "DEL_PANIER":
-      return { ...state, panier: state.panier.filter((item) => item.id !== action.payload) };
+      return { ...state, panier: state.panier.filter( ( item ) => item.id !== action.payload ) };
+    
+    case "GET_PRODUCTS":
+      return { ...state, products: action.payload };
 
     case "GET_TOTALS":
       const totalPrice = state.panier.reduce( ( acc, val ) => acc + val.price * val.amount, 0 );
       const totalAmount = state.panier.reduce( ( acc, val ) => acc + val.amount, 0 );
       return { ...state, totalPrice, totalAmount };
+    
     default:
-      state;
+      return state;
   }
 };
 

@@ -1,14 +1,13 @@
 import React from "react";
 import { FlatList, ActivityIndicator, Text } from "react-native";
-import UseProducts from "../../../hooks/products/UseProducts";
 import Product from "../../productComponent/Product";
 import { COLORS, windowHeight } from "../../../constants/theme";
 import styles from "./FeaturedStyle";
+import { useGlobalContext } from "../../../context/Context";
 
 const Featured = () => {
-  //On va chercher la data grace à un hook personnalisé useproducts
-  const products = UseProducts();
-  const featured = products?.filter((product) => product.featured);
+
+  const { products } = useGlobalContext();
 
   return (
       <>
@@ -17,9 +16,9 @@ const Featured = () => {
         </Text>
         
         {/* Articles */}
-        {featured ? (
+        {products.length > 0 ? (
           <FlatList
-            data={featured}
+            data={products?.filter( ( product ) => product.featured )}
             renderItem={ ( { item, index } ) => <Product article={ item } index={ index } />}
             keyExtractor={ article => article.id}
             showsHorizontalScrollIndicator={false}
