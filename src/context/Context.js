@@ -49,6 +49,7 @@ const AppProvider = ({ children }) => {
   );
 };
 
+//Consumer
 const useGlobalContext = () => {
   return useContext(AppContext);
 };

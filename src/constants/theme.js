@@ -3,8 +3,7 @@ import { Dimensions } from "react-native";
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
 const URLProducts = "https://course-api.com/react-store-products";
-const URLSingleProduct =
-  "https://course-api.com/javascript-store-single-product?id=";
+const URLSingleProduct = "https://course-api.com/javascript-store-single-product?id=";
 
 const COLORS = {
   orange: "#BA5D2C",
