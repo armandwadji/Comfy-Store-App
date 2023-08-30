@@ -15,13 +15,7 @@ const Expedition = () => {
           prendre un peu de temps, mais la qualité de nos pièces pour un prix
           accéssible vous fera oublier cette attente.
         </Text>
-        <Text
-          style={[
-            styles.text,
-            {
-              marginVertical: 15,
-            },
-          ]}>
+        <Text style={[ styles.text, { marginVertical: 15 } ]}>
           L'expédition consiste à l'envoi de nos produits depuis nos usines à
           nos partenaires assurant la livraison finale.
         </Text>
@@ -38,7 +32,7 @@ const Expedition = () => {
       <View>
         <Text style={[styles.text]}>
           Besoin d'un produit au plus vite ? Les produits indiqués express sont
-          expédiés sous 5 jours ouvrés.{" "}
+          expédiés sous 5 jours ouvrés.
         </Text>
       </View>
     </ScrollView>

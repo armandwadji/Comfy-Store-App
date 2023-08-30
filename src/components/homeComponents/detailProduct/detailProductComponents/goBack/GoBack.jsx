@@ -21,13 +21,7 @@ const GoBack = () => {
           d'enlèvement), une fois que nous aurons réceptionné l'article.
         </Text>
         <TouchableOpacity>
-          <Text
-            style={[
-              styles.text,
-              {
-                textDecorationLine: "underline",
-              },
-            ]}>
+          <Text style={[ styles.text, { textDecorationLine: "underline" } ]}>
             En savoir plus
           </Text>
         </TouchableOpacity>

@@ -1,14 +1,5 @@
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { View, Text, ActivityIndicator, TouchableOpacity, Image, FlatList, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-// import UseProduct from "../../../hooks/product/UseProduct";
 import { COLORS } from "../../../constants/theme";
 import styles from "./DetailProductStyle";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -28,51 +19,34 @@ const DetailProduct = ({ route, navigation }) => {
   const [descLength, setDesclength] = useState(true);
 
   //Méthode pour le paragraphe de description
-  const showDescription = () => {
-    setDesclength(!descLength);
-  };
-
-  //Pour aller chercher le détail du produit
-  // const product = UseProduct(id);
+  const showDescription = _ => setDesclength( !descLength );
 
   //Pour ajouter dans le panier en cas de click de l'utilisateur
   const panier = { id, name, price, image };
 
   const insets = useSafeAreaInsets();
+  
   useEffect(() => {
     route.params && setLoading(false);
-  }, [route.params]);
+  }, [ route.params ] );
+  
   return (
     <View style={[styles.detailProductContainer]}>
       {loading ? (
         <ActivityIndicator size={"large"} color={COLORS.orange} />
       ) : (
         <>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            style={{
-              marginBottom: insets.bottom === 0 ? 80 : insets.bottom,
-            }}>
-            {/* BackNavigate */}
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={[styles.backIcon]}>
-              <MaterialIcons
-                name='arrow-back-ios'
-                size={20}
-                color={COLORS.orange}
-                style={{}}
-              />
+          <ScrollView showsVerticalScrollIndicator={false} style={{ marginBottom: insets.bottom === 0 ? 80 : insets.bottom }}>
+           
+              {/* BackNavigate */ }
+            <TouchableOpacity onPress={ _ => navigation.goBack()} style={[styles.backIcon]}>
+              <MaterialIcons name='arrow-back-ios' size={20} color={COLORS.orange} />
             </TouchableOpacity>
 
             {/* DetailContainer */}
             <View style={[styles.detailContainer]}>
               {/* Image */}
-              <Image
-                source={{ uri: image }}
-                resizeMode='cover'
-                style={[styles.img]}
-              />
+              <Image source={{ uri: image }} resizeMode='cover' style={[styles.img]} />
 
               {/* InfoContainer */}
               <View style={[styles.infoContainer]}>
@@ -132,25 +106,13 @@ const DetailProduct = ({ route, navigation }) => {
               {/* SAV Info */}
 
               {/* Expeditions */}
-              <SavInfo
-                title={"Expedition"}
-                text={"Sous 7 jours ouvrés"}
-                goTo={"expedition"}
-              />
+              <SavInfo title={"Expedition"} text={"Sous 7 jours ouvrés"} goTo={"expedition"} />
 
               {/* Livraisons */}
-              <SavInfo
-                title={"Livraisons"}
-                text={"Livraison Standard 70 €"}
-                goTo={"livraison"}
-              />
+              <SavInfo title={"Livraisons"} text={"Livraison Standard 70 €"} goTo={"livraison"} />
 
               {/* GoBack */}
-              <SavInfo
-                title={"Retours"}
-                text={"Retours faciles"}
-                goTo={"goback"}
-              />
+              <SavInfo title={"Retours"} text={"Retours faciles"} goTo={"goback"} />
             </View>
           </ScrollView>
 
