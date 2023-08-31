@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 
-const Search = ({ scroll, color, setSearch, meter, press }) => {
+const Search = ({ scroll, color, getSearch, meter, press }) => {
   //Variable déterminant la distance du top
   const insets = useSafeAreaInsets();
 
@@ -22,9 +22,7 @@ const Search = ({ scroll, color, setSearch, meter, press }) => {
     setValue(scroll);
     const val = scroll;
     const res = val - value;
-    // console.log("show :", show);
-    // console.log("val :", val);
-    // console.log("res :", res);
+
     if (res > 0) {
       setShow(false);
     } else {
@@ -52,7 +50,7 @@ const Search = ({ scroll, color, setSearch, meter, press }) => {
                 screen: "Store",
               });
           }}
-          onChangeText={(text) => !press && setSearch(text)}
+          onChangeText={(text) => !press && getSearch(text)}
           placeholder='Recherche'
           placeholderTextColor={color ? color : COLORS.white}
           style={[

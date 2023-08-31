@@ -24,6 +24,10 @@ const reducer = (state, action) => {
       const totalAmount = state.panier.reduce( ( acc, val ) => acc + val.amount, 0 );
       return { ...state, totalPrice, totalAmount };
     
+    case "LIKES":
+      state = !state.likes.includes( action.payload ) ? { ...state, likes: [ ...state.likes, action.payload ] } : { ...state, likes: state.likes.filter( like => like !== action.payload ) };
+      return state;
+    
     default:
       return state;
   }

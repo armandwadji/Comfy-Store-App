@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "../reducer/Reducer";
 import axios from "axios";
 import { URLProducts } from "../constants/theme";
@@ -8,6 +8,7 @@ const AppContext = React.createContext();
 const initialState = {
   panier: [],
   products: [],
+  likes: [],
   totalPrice: 0,
   totalAmount: 0,
 };
@@ -19,7 +20,9 @@ const AppProvider = ({ children }) => {
   
   const decrease = id => dispatch( { type: "DECREASE", payload: id } );
 
-  const delPanier = id => { dispatch( { type: "DEL_PANIER", payload: id } ) };
+  const delPanier = id => dispatch( { type: "DEL_PANIER", payload: id } ) ;
+
+  const toggleLikes = id => dispatch( { type: "LIKES", payload: id } ) ;
 
   useEffect(() => {
     dispatch( { type: "GET_TOTALS" } );
@@ -36,6 +39,7 @@ const AppProvider = ({ children }) => {
         increase,
         decrease,
         delPanier,
+        toggleLikes
       }}>
       {children}
     </AppContext.Provider>

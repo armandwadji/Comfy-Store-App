@@ -2,10 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { COLORS } from "../../../../constants/theme";
 
-const Companies = ({ company, Company, setCompany }) => {
+const Companies = ( { company, filterState, getCompany } ) => {
+
   return (
-    <TouchableOpacity onPress={() => setCompany(company)} style={[ styles.companyBorder, Company === company && { backgroundColor: COLORS.orange,borderColor: COLORS.white}]}>
-      <Text style={[ styles.company, Company === company && { color: COLORS.white } ]}>
+    <TouchableOpacity onPress={ _ => getCompany() } style={[ styles.companyBorder, company === filterState.company && { backgroundColor: COLORS.orange,borderColor: COLORS.white}]}>
+      <Text style={[ styles.company, company === filterState.company && { color: COLORS.white } ]}>
         {company}
       </Text>
     </TouchableOpacity>
