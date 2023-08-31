@@ -1,7 +1,7 @@
 import { View,ScrollView,SafeAreaView } from "react-native";
 import React, { useRef } from "react";
-import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
 import { windowHeight } from "../../constants/theme";
+import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
 import Header from "../../components/storeComponents/header/Header";
 import EmptySearch from "../../components/storeComponents/emptySearch/EmptySearch";

@@ -14,13 +14,7 @@ const Emptybasket = () => {
   const isFocused = useIsFocused();
 
   return (
-    <View
-      style={[
-        styles.emptyContainer,
-        {
-          height: windowHeight - insets.top * 4,
-        },
-      ]}>
+    <View style={[ styles.emptyContainer, { height: windowHeight - insets.top * 4 } ]}>
       <Animatable.Image
         animation={isFocused ? "fadeInDown" : "fadeInUp"}
         easing={"ease-in-out"}
@@ -28,9 +22,7 @@ const Emptybasket = () => {
         resizeMode='contain'
         style={{ height: 150 }}
       />
-      <Animatable.Text
-        animation={isFocused ? "fadeInUp" : "fadeInDown"}
-        style={[styles.emptyBasket]}>
+      <Animatable.Text animation={isFocused ? "fadeInUp" : "fadeInDown"} style={[styles.emptyBasket]} >
         Votre panier est vide !
       </Animatable.Text>
     </View>

@@ -5,25 +5,20 @@ import Expedition from "../components/homeComponents/detailProduct/detailProduct
 import { windowHeight } from "../constants/theme";
 import Livraison from "../components/homeComponents/detailProduct/detailProductComponents/livraison/Livraison";
 import GoBack from "../components/homeComponents/detailProduct/detailProductComponents/goBack/GoBack";
+import { StyleSheet } from "react-native";
 
 const Navigation = () => {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={ { headerShown: false } }>
+      
       <Stack.Group>
         <Stack.Screen name='bottom' component={BottomTabScreen} />
         <Stack.Screen name='detail' component={DetailProduct} />
       </Stack.Group>
-      <Stack.Group
-        screenOptions={{
-          presentation: "modal",
-          cardStyle: {
-            transform: [{ translateY: windowHeight / 8 }],
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-          },
-        }}>
+
+      <Stack.Group screenOptions={{ presentation: "modal", cardStyle: styles.bottom }}>
         <Stack.Screen name='expedition' component={Expedition} />
         <Stack.Screen name='livraison' component={Livraison} />
         <Stack.Screen name='goback' component={GoBack} />
@@ -33,3 +28,11 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+const styles = StyleSheet.create({
+  bottom: {
+    transform: [{ translateY: windowHeight / 8 }],
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+});

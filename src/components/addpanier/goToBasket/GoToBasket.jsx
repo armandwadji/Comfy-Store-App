@@ -22,11 +22,7 @@ const GoToBasket = ({ article }) => {
 
       {/* InfosContainer */}
       <View style={[styles.infosContainer]}>
-        <Image
-          source={{ uri: image }}
-          resizeMode='contain'
-          style={[styles.img]}
-        />
+        <Image source={{ uri: image }} resizeMode='contain' style={[styles.img]} />
         <View style={[styles.infos]}>
           <Text style={[styles.name]}>{name}</Text>
           <Text style={[styles.price]}>{formatPrice(price)}</Text>
@@ -34,13 +30,7 @@ const GoToBasket = ({ article }) => {
       </View>
 
       {/* Btn */}
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("bottom", {
-            screen: "Basket",
-          });
-        }}
-        style={[styles.btn]}>
+      <TouchableOpacity style={[styles.btn]} onPress={ _ => navigation.navigate("bottom", { screen: "Basket" }) } >
         <Text style={[styles.btnText]}>Voir le panier</Text>
       </TouchableOpacity>
     </View>

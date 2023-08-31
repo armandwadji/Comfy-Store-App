@@ -12,22 +12,18 @@ const AddPanier = ({ panier, meter }) => {
   const { id, name, price, image } = panier;
 
   const modalizeRef = useRef(null);
-  const onOpen = _ => modalizeRef.current?.open() ;
+  const onOpen = _ => modalizeRef.current?.open();
+  
+  const addPanier = () => {
+    increase(id, name, price, image);
+    onOpen();
+  }
 
   return (
     <>
       {/* AddPanier */}
-      <Animatable.View
-        animation='fadeInUp'
-        delay={200}
-        duration={400}
-        easing='ease-in'
-        style={[styles.addButtonContainer, { bottom: meter ? meter : 25 }]}>
-        <TouchableOpacity
-          onPress={() => {
-            increase(id, name, price, image);
-            onOpen();
-          }}>
+      <Animatable.View animation='fadeInUp' delay={200} duration={400} easing='ease-in' style={[styles.addButtonContainer, { bottom: meter ? meter : 25 }]}>
+        <TouchableOpacity onPress={ _ => addPanier() }>
           <Text style={[styles.addButton]}>Ajouter au panier</Text>
         </TouchableOpacity>
       </Animatable.View>

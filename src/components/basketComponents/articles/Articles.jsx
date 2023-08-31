@@ -11,9 +11,7 @@ const Articles = () => {
       {/* Articles du panier */}
       <View style={[styles.articlesContainer]}>
         {/* Article */}
-        {panier.map((article, index) => (
-          <Article article={article} index={index} key={index} />
-        ))}
+        {panier.map((article, index) => <Article article={article} index={index} key={index} /> )}
       </View>
     </>
   );

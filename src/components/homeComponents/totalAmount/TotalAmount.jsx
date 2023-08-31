@@ -1,17 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import * as Animatable from "react-native-animatable";
 import { COLORS } from "../../../constants/theme";
+import { StyleSheet, Text } from "react-native";
 import { useGlobalContext } from "../../../context/Context";
 
 const TotalAmount = () => {
   // variable pour le nombre total d'articles à afficher
   const { totalAmount } = useGlobalContext();
   return (
-    <Animatable.View
-      animation={totalAmount > 0 ? "fadeInUp" : "fadeOutUp"}
-      easing='ease-out'
-      style={[styles.totalAmount]}>
+    <Animatable.View animation={totalAmount > 0 ? "fadeInUp" : "fadeOutUp"} easing='ease-out' style={[styles.totalAmount]}>
       <Text style={{ color: COLORS.white }}>{totalAmount}</Text>
     </Animatable.View>
   );

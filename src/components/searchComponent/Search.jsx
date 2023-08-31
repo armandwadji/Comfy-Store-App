@@ -36,20 +36,9 @@ const Search = ({ scroll, color, getSearch, meter, press }) => {
       delay={200}
       duration={200}
       easing='ease-in'
-      style={[
-        styles.container,
-        {
-          top: insets.top + (meter ? meter : 0),
-        },
-      ]}>
+      style={[ styles.container, { top: insets.top + (meter ? meter : 0) } ]}>
       <TouchableOpacity>
-        <TextInput
-          onPressIn={() => {
-            press &&
-              navigation.navigate("bottom", {
-                screen: "Store",
-              });
-          }}
+        <TextInput onPressIn={ _ => press && navigation.navigate("bottom", { screen: "Store" })  }
           onChangeText={(text) => !press && getSearch(text)}
           placeholder='Recherche'
           placeholderTextColor={color ? color : COLORS.white}

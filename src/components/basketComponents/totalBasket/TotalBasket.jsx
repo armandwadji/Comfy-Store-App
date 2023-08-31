@@ -22,9 +22,7 @@ const TotalBasket = () => {
 
   return (
     <>
-      <Animatable.View
-        animation={isFocused ? "slideInRight" : "slideOutRight"}
-        duration={0}>
+      <Animatable.View animation={isFocused ? "slideInRight" : "slideOutRight"} duration={0}>
         <Text style={[styles.line]}></Text>
 
         {/* Total Amount & price */}
@@ -44,13 +42,7 @@ const TotalBasket = () => {
               </View>
               <View>
                 <Text style={{ opacity: 0.8 }}> sans frais</Text>
-                <Text
-                  style={{
-                    backgroundColor: COLORS.black,
-                    height: 0.5,
-                    marginTop: 2,
-                    marginLeft: 5,
-                  }}></Text>
+                <Text style={{ backgroundColor: COLORS.black, height: 0.5, marginTop: 2, marginLeft: 5,}}></Text>
               </View>
             </View>
           </View>
@@ -75,11 +67,7 @@ const TotalBasket = () => {
           <>
             {/* Appliquer */}
             <View style={[styles.applicationContainer]}>
-              <TextInput
-                placeholder='ex. MX120CFS'
-                keyboardType='ascii-capable'
-                style={[styles.textInput]}
-              />
+              <TextInput placeholder='ex. MX120CFS' keyboardType='ascii-capable' style={[styles.textInput]} />
               <TouchableOpacity style={[styles.btn]}>
                 <Text>APPLIQUER</Text>
               </TouchableOpacity>
@@ -101,13 +89,7 @@ const TotalBasket = () => {
             </View>
 
             {/* Ligne 2 */}
-            <View
-              style={[
-                styles.ligne,
-                {
-                  marginTop: 5,
-                },
-              ]}>
+            <View style={[ styles.ligne, { marginTop: 5 } ]}>
               <Feather name='box' size={20} style={[styles.icon]} />
 
               <Text style={[styles.text]}>
