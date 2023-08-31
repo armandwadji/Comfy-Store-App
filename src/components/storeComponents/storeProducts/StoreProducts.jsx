@@ -5,9 +5,7 @@ import Product from "../../productComponent/Product";
 const StoreProducts = ({ products }) => {
   return (
     <View style={[styles.products]}>
-      {products?.map((item, index) => (
-        <Product article={item} key={index} index={index} />
-      ))}
+      {products?.map((item, index) => <Product article={item} key={index} index={index} /> )}
     </View>
   );
 };
