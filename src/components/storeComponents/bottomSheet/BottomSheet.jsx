@@ -8,7 +8,7 @@ import Slider from "@react-native-community/slider";
 import styles from "./BottomSheetStyle";
 import Categories from "./categories/Categories";
 import Companies from "./companies/Companies";
-import searchReducer from "./BottomSheet.reducer";
+import searchReducer, { CATEGORY, COMPANY, PRICE, SEARCH } from "./BottomSheet.reducer";
 
 const BottomSheet = ( ) => {
 
@@ -37,7 +37,7 @@ const BottomSheet = ( ) => {
       <ScrollView>
 
         {/* SearchComponent */}
-        <Search color={COLORS.teal} getSearch={ (value)=> dispatch( { type: "SEARCH", payload: value } ) } meter={-insets.top + 20}/>
+        <Search color={COLORS.teal} getSearch={ (value)=> dispatch( { type: SEARCH, payload: value } ) } meter={-insets.top + 20}/>
 
         {/* parameters */}
         <View style={ { marginTop: "18%" } }>
@@ -47,7 +47,7 @@ const BottomSheet = ( ) => {
           <View style={[styles.companiesContainer]}>
             <FlatList
               data={["all", ...new Set(products?.map((item) => item.company))]}
-              renderItem={({ item }) => <Companies company={item } filterState={filterState} index={item} getCompany={ _ => dispatch( { type: "COMPANY", payload: item } ) } />}
+              renderItem={({ item }) => <Companies company={item } filterState={filterState} index={item} getCompany={ _ => dispatch( { type: COMPANY, payload: item } ) } />}
               keyExtractor={(category) => category}
               showsHorizontalScrollIndicator={false}
               horizontal={true}
@@ -65,7 +65,7 @@ const BottomSheet = ( ) => {
             minimumTrackTintColor={COLORS.orange}
             maximumTrackTintColor={COLORS.background}
             value={filterState.price===null ? maxPrices / 2 : filterState.price}
-            onValueChange={(value) => dispatch( { type: "PRICE", payload: parseInt(value) } )}
+            onValueChange={(value) => dispatch( { type: PRICE, payload: parseInt(value) } )}
           />
 
           {/* Categories */}
@@ -73,7 +73,7 @@ const BottomSheet = ( ) => {
           <View style={[styles.companiesContainer]}>
             <FlatList
               data={[ "all", ...new Set( products?.map( ( item ) => item.category ) ) ]}
-              renderItem={({ item }) => <Categories category={item} index={item} filterState={filterState} getCategory={ _ => dispatch( { type: "CATEGORY", payload: item } ) } />}
+              renderItem={({ item }) => <Categories category={item} index={item} filterState={filterState} getCategory={ _ => dispatch( { type: CATEGORY, payload: item } ) } />}
               keyExtractor={(category) => category}
               showsHorizontalScrollIndicator={false}
               horizontal={true}

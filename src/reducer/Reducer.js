@@ -7,35 +7,50 @@ export const LIKES_PRODUCTS = "LIKES_PRODUCTS";
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 
 const reducer = ( state, action ) => {
-  switch (action.type) {
+  switch ( action.type ) {
+    
     case INCREASE_PRODUCT:
-      const result = state.panier.find( ( item ) => item.id === action.payload.id );
       
-      if ( result ) return { ...state, panier: state.panier.map( item => ( item.id === action.payload.id ) ? { ...item, amount: item.amount + 1 } : item ) };
+      if ( state.panier.find( ( item ) => item.id === action.payload.id ) ) return {
+        ...state,
+        panier: state.panier.map( item => ( item.id === action.payload.id ) ? { ...item, amount: item.amount + 1 } : item )
+      };
       
-      return { ...state, panier: [ ...state.panier, { ...action.payload, amount: 1 } ] };
+      return {
+        ...state,
+        panier: [ ...state.panier, { ...action.payload, amount: 1 } ],
+      };
       
     case DECREASE_PRODUCT:
-      let decreasePanier = state.panier
-                                .map((item) => (item.id === action.payload) ? { ...item, amount: item.amount - 1 } : item)
-                                .filter((item) => item.amount !== 0);
 
-      return { ...state, panier: decreasePanier };
+      return {
+        ...state,
+        panier: state.panier.map((item) => (item.id === action.payload) ? { ...item, amount: item.amount - 1 } : item).filter((item) => item.amount !== 0)
+      };
 
     case DELETE_PRODUCT:
-      return { ...state, panier: state.panier.filter( ( item ) => item.id !== action.payload ) };
+      return {
+        ...state,
+        panier: state.panier.filter( ( item ) => item.id !== action.payload ),
+      };
     
     case GET_PRODUCTS:
-      return { ...state, products: action.payload, productsFilter : action.payload };
+      return {
+        ...state,
+        products: action.payload,
+        productsFilter: action.payload
+      };
 
     case TOTALS_PRODUCTS:
-      const totalPrice = state.panier.reduce( ( acc, val ) => acc + val.price * val.amount, 0 );
-      const totalAmount = state.panier.reduce( ( acc, val ) => acc + val.amount, 0 );
-      return { ...state, totalPrice, totalAmount };
+
+      return {
+        ...state,
+        totalPrice : state.panier.reduce( ( acc, val ) => acc + val.price * val.amount, 0 ),
+        totalAmount : state.panier.reduce( ( acc, val ) => acc + val.amount, 0 ),
+      };
     
     case LIKES_PRODUCTS:
-      state = !state.likes.includes( action.payload ) ? { ...state, likes: [ ...state.likes, action.payload ] } : { ...state, likes: state.likes.filter( like => like !== action.payload ) };
-      return state;
+      return !state.likes.includes( action.payload ) ? { ...state, likes: [ ...state.likes, action.payload ] } : { ...state, likes: state.likes.filter( like => like !== action.payload ) };
     
     case FILTER_PRODUCTS:
 

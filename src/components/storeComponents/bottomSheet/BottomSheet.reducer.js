@@ -1,3 +1,7 @@
+export const COMPANY = "COMPANY";
+export const CATEGORY = "CATEGORY";
+export const PRICE = "PRICE";
+export const SEARCH = "SEARCH";
 
 const searchReducer = ( state, action ) => {
     switch ( action.type ) {
