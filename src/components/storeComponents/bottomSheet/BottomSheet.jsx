@@ -10,9 +10,9 @@ import Categories from "./categories/Categories";
 import Companies from "./companies/Companies";
 import searchReducer from "./BottomSheet.reducer";
 
-const BottomSheet = ( { setProductsFilter } ) => {
+const BottomSheet = ( ) => {
 
-  const { products } = useGlobalContext();
+  const { products, filterProducts } = useGlobalContext();
 
   //On trouve le pris maximum des articles
   const prices = [...new Set(products?.map((item) => item.price))];
@@ -27,30 +27,8 @@ const BottomSheet = ( { setProductsFilter } ) => {
 
   const [ filterState, dispatch ] = useReducer( searchReducer, templateFilter );
 
-  // On initialise un tableau de produits filters contenant tous les produits au départ.
-  let productsFilter = [...products];
-
-  // Fonction qui actualise le filtre en fonction des actions de l'utilisateur
-  const handleFilterCompany = () => {
-
-    // Filtre selon le prix
-    if ( filterState.price ||  filterState.price === 0 ) productsFilter = products.filter( product =>  product.price / 100 <= filterState.price );
-    
-    // Filtre selon la company
-    if ( filterState.company !== "all" ) productsFilter = productsFilter.filter( product => product.company === filterState.company );
-    
-    // Filtre selon la category
-    if ( filterState.category !== "all" ) productsFilter = productsFilter.filter( product => product.category === filterState.category );
-    
-    // Filtre selon la recherche
-    if ( filterState.search ) productsFilter = productsFilter.filter( product => ( product.name.includes( filterState.search.toLowerCase() ) ) );
-
-    // On actualise le filtre apres les modifications
-    setProductsFilter(productsFilter);
-  };
-
   // On exécute la fonction a chaque fois que l'un des quatres paramètres de cette fonction est modifié
-  useEffect( _ => handleFilterCompany( ) , [filterState]);
+  useEffect( _ => { filterProducts( filterState ) }, [ filterState ] );
 
   const insets = useSafeAreaInsets();
 
@@ -69,7 +47,7 @@ const BottomSheet = ( { setProductsFilter } ) => {
           <View style={[styles.companiesContainer]}>
             <FlatList
               data={["all", ...new Set(products?.map((item) => item.company))]}
-              renderItem={({ item }) => <Companies company={item } filterState={filterState} index={item} getCompany={ ()=> dispatch( { type: "COMPANY", payload: item } ) } />}
+              renderItem={({ item }) => <Companies company={item } filterState={filterState} index={item} getCompany={ _ => dispatch( { type: "COMPANY", payload: item } ) } />}
               keyExtractor={(category) => category}
               showsHorizontalScrollIndicator={false}
               horizontal={true}
@@ -95,7 +73,7 @@ const BottomSheet = ( { setProductsFilter } ) => {
           <View style={[styles.companiesContainer]}>
             <FlatList
               data={[ "all", ...new Set( products?.map( ( item ) => item.category ) ) ]}
-              renderItem={({ item }) => <Categories category={item} index={item} filterState={filterState} getCategory={ ()=> dispatch( { type: "CATEGORY", payload: item } ) } />}
+              renderItem={({ item }) => <Categories category={item} index={item} filterState={filterState} getCategory={ _ => dispatch( { type: "CATEGORY", payload: item } ) } />}
               keyExtractor={(category) => category}
               showsHorizontalScrollIndicator={false}
               horizontal={true}
