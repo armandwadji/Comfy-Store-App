@@ -91,9 +91,7 @@ const BottomSheet = ( { setProductsFilter } ) => {
           />
 
           {/* Categories */}
-          <Text style={[styles.companiesTitle, { marginVertical: 15 }]}>
-            categories
-          </Text>
+          <Text style={[styles.companiesTitle, { marginVertical: 15 }]}> categories </Text>
           <View style={[styles.companiesContainer]}>
             <FlatList
               data={[ "all", ...new Set( products?.map( ( item ) => item.category ) ) ]}

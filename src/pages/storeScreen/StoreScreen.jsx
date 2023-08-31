@@ -28,11 +28,10 @@ const StoreScreen = () => {
             <Header productsFilter={productsFilter} onOpen={onOpen} />
 
             {/* Products */}
-            {productsFilter ? (
-              productsFilter.length > 0 ?  <StoreProducts products={productsFilter} />  :  <EmptySearch />
-            ) : (
-              <ActivityIndicator size={"large"} color={COLORS.orange} style={{flex: 1, height: windowHeight / 2, alignItems: "center" }} />
-            )}
+            { productsFilter
+              ? ( productsFilter.length > 0 ? <StoreProducts products={ productsFilter } /> : <EmptySearch /> )
+              : ( <ActivityIndicator size={ "large" } color={ COLORS.orange } style={ { flex: 1, height: windowHeight / 2, alignItems: "center" } } /> )
+            }
           </ScrollView>
         </View>
       </SafeAreaView>
