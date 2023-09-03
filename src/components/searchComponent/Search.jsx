@@ -50,12 +50,7 @@ const Search = ({ scroll, color, getSearch, meter, press }) => {
             },
           ]}
         />
-        <Feather
-          name={"search"}
-          size={20}
-          color={color ? color : COLORS.white}
-          style={styles.icon}
-        />
+        <Feather name={"search"} size={20} color={color ? color : COLORS.white} style={styles.icon} />
       </TouchableOpacity>
     </Animatable.View>
   );
