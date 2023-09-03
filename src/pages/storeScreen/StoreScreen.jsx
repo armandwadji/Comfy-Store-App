@@ -22,9 +22,7 @@ const StoreScreen = () => {
       <SafeAreaView>
         <View style={{ marginTop: 10 }}>
           <ScrollView stickyHeaderIndices={ [ 0 ] } showsVerticalScrollIndicator={ false }>
-            {/* Header */}
             <Header productsFilter={ productsFilter } onOpen={ onOpen } />
-            
             {/* Products */}
             { productsFilter.length > 0 ? <StoreProducts products={ productsFilter } /> : <EmptySearch /> }
           </ScrollView>
