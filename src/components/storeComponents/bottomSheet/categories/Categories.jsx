@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textTransform: "capitalize",
         color: COLORS.orange,
-      },
+        },
     categoriesContainer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 10,
+        flexWrap: "wrap",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginHorizontal: 10,
     },
   });
 

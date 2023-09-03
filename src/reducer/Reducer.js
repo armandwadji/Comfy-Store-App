@@ -50,7 +50,9 @@ const reducer = ( state, action ) => {
       };
     
     case LIKES_PRODUCTS:
-      return !state.likes.includes( action.payload ) ? { ...state, likes: [ ...state.likes, action.payload ] } : { ...state, likes: state.likes.filter( like => like !== action.payload ) };
+      return !state.likes.includes( action.payload )
+        ? { ...state, likes: [ ...state.likes, action.payload ] }
+        : { ...state, likes: state.likes.filter( like => like !== action.payload ) };
     
     case FILTER_PRODUCTS:
 
