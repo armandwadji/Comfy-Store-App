@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, windowHeight, windowWidth } from "../../../constants/theme";
+import { COLORS, windowWidth } from "../../../constants/theme";
 
 const styles = StyleSheet.create({
   bottomSheetContainer: {
@@ -52,13 +52,29 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     color: COLORS.orange,
   },
+  likesContainer: {
+    display: 'flex',
+    flexDirection: "row",
+    alignItems:'center',
+  },
+  likesTitle: {
+    marginVertical: 20,
+    marginLeft: 15,
+    fontSize: 20,
+    fontWeight: "bold",
+    textTransform: "capitalize",
+    color: COLORS.orange,
+  },
   slider: {
     width: windowWidth - 40,
     marginLeft: "auto",
     marginRight: "auto",
-    // marginVertical: 10,
     height: 20,
   },
+  heart: {
+    marginLeft: 15,
+    paddingHorizontal:5,
+  }
 });
 
 export default styles;

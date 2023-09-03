@@ -56,7 +56,7 @@ const reducer = ( state, action ) => {
 
       let productsFilter = [ ...state.products ];
 
-      const { category, company, price, search } = action.payload;
+      const { category, company, price, search, like } = action.payload;
       
       // Filtre selon le prix
       if ( price !== null ) productsFilter = productsFilter.filter( product => product.price / 100 <= price );
@@ -70,6 +70,9 @@ const reducer = ( state, action ) => {
       // Filtre selon la recherche
       if ( search ) productsFilter = productsFilter.filter( product => ( product.name.includes( search.toLowerCase() ) ) );
 
+      // Filtre selon les likes
+      if ( like ) productsFilter = productsFilter.filter( product => state.likes.includes( product.id ) );
+  
       return { ...state, productsFilter };
     
     default:

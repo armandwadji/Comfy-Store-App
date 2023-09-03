@@ -1,31 +1,44 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import { COLORS } from "../../../../constants/theme";
+import Category from "../Category/Category";
+import React from 'react';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
+import { useGlobalContext } from '../../../../context/Context';
+import { COLORS } from '../../../../constants/theme';
 
-const Category = ( { category, filterState, getCategory } ) => {
-  
-  return (
-    <TouchableOpacity onPress={ _ => getCategory()} style={[ styles.companyBorder, category === filterState.category && { backgroundColor: COLORS.orange, borderColor: COLORS.white}]}>
-      <Text style={[ styles.company, category === filterState.category && { color: COLORS.white } ]}>
-        {category}
-      </Text>
-    </TouchableOpacity>
-  );
-};
+const Categories = ( { filterState, getCategory } ) => {
 
-export default Category;
+    const { products } = useGlobalContext();
+
+    return (
+        <>
+            <Text style={[styles.categoriesTitle, { marginVertical: 10 }]}> categories </Text>
+            <View style={[styles.categoriesContainer]}>
+                <FlatList
+                data={[ "all", ...new Set( products?.map( ( item ) => item.category ) ) ]}
+                renderItem={({ item }) => <Category category={item} index={item} filterState={filterState} getCategory= {getCategory} />}
+                keyExtractor={(category) => category}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                />
+            </View>
+        </>
+    );
+}
 
 const styles = StyleSheet.create({
-  companyBorder: {
-    marginHorizontal: 5,
-    padding: 6,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: COLORS.teal,
-    fontSize: 15,
-  },
-  company: {
-    textTransform: "capitalize",
-    color: COLORS.teal,
-  },
-});
+    categoriesTitle: {
+        marginBottom: 15,
+        marginLeft: 15,
+        fontSize: 20,
+        fontWeight: "bold",
+        textTransform: "capitalize",
+        color: COLORS.orange,
+      },
+    categoriesContainer: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 10,
+    },
+  });
+
+export default Categories;
