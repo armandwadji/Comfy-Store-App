@@ -1,5 +1,5 @@
 import { View,ScrollView,SafeAreaView } from "react-native";
-import React, { useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import { windowHeight } from "../../constants/theme";
 import StoreProducts from "../../components/storeComponents/storeProducts/StoreProducts";
 import BottomSheet from "../../components/storeComponents/bottomSheet/BottomSheet";
@@ -8,12 +8,35 @@ import EmptySearch from "../../components/storeComponents/emptySearch/EmptySearc
 
 import { Modalize } from "react-native-modalize";
 import { useGlobalContext } from "../../context/Context";
+import searchReducer, { CATEGORY, COMPANY, LIKE, PRICE, SEARCH } from "../../components/storeComponents/bottomSheet/BottomSheet.reducer";
 
 const StoreScreen = () => {
 
-  const { productsFilter } = useGlobalContext();
+  const { productsFilter, filterProducts } = useGlobalContext();
 
-  const modalizeRef = useRef(null);
+  const modalizeRef = useRef( null );
+  
+  const templateFilter = {
+    price: null,
+    company: "all",
+    category: "all",
+    search: "",
+    like: false
+  };
+
+  const [ filterState, dispatch ] = useReducer( searchReducer, templateFilter );
+
+  const filtersMethod = {
+    filterState,
+    getSearch: search => dispatch( { type: SEARCH, payload: search } ),
+    getCompany: company => dispatch( { type: COMPANY, payload: company } ),
+    getPrice: price => dispatch( { type: PRICE, payload: parseInt( price ) } ),
+    getCategory: category => dispatch( { type: CATEGORY, payload: category } ),
+    getLike: _ => dispatch( { type: LIKE } ),
+  }
+
+  // On exécute la fonction a chaque fois que l'un des quatres paramètres de cette fonction est modifié
+  useEffect( _ => filterProducts( filterState ) , [ filterState ] );
 
   const onOpen = () => modalizeRef.current?.open();
 
@@ -31,7 +54,7 @@ const StoreScreen = () => {
 
       {/* BottomFilter */}
       <Modalize ref={modalizeRef} modalHeight={windowHeight / 2} snapPoint={windowHeight / 1.1}>
-        <BottomSheet setProductsFilter={""} />
+        <BottomSheet {...filtersMethod} />
       </Modalize>
     </>
   );
