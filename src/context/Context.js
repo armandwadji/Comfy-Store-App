@@ -29,9 +29,7 @@ const AppProvider = ({ children }) => {
 
   useEffect( _ => dispatch( { type: TOTALS_PRODUCTS } ), [ state.panier ] );
   
-  useEffect( () => {
-    axios.get( URLProducts ).then( ({data}) => dispatch( { type: GET_PRODUCTS, payload: data } ) );
-  }, [] );
+  useEffect( _ => { axios.get( URLProducts ).then( ({data}) => dispatch( { type: GET_PRODUCTS, payload: data } ) ) }, [] );
 
   return (
     <AppContext.Provider
