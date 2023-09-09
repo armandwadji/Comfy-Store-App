@@ -38,7 +38,10 @@ const StoreScreen = () => {
   // On exécute la fonction a chaque fois que l'un des quatres paramètres de cette fonction est modifié
   useEffect( _ => filterProducts( filterState ) , [ filterState ] );
 
-  const onOpen = () => modalizeRef.current?.open();
+  const onOpen = () => {
+    modalizeRef.current?.open();
+    filterProducts( filterState );
+  };
 
   return (
     <>
