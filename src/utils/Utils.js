@@ -1,4 +1,4 @@
-export const truncateText = ( string, n ) => string?.length > n ? `${string.substr( 0, n )}` : string;
+export const truncateText = ( text, n ) => text?.length > n ? `${text.substr( 0, n )}` : text;
 
 export const formatPrice = (price) => {
   let formattedprice = new Intl.NumberFormat("fr-FR", {
